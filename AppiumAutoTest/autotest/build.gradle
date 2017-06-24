@@ -1,0 +1,52 @@
+apply plugin: 'java'
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile files('src/main/java/libs/java-client-4.1.2.jar')
+    compile files('src/main/java/libs/selenium-server-standalone-3.0.0-beta3.jar')
+    compile 'org.testng:testng:6.9.6'
+    compile 'com.google.inject:guice:+'
+    compile 'org.anarres.gradle:gradle-velocity-plugin:+'
+    compile files('src/main/java/libs/reportng-1.1.5.jar')
+}
+
+/*task testReport(type: TestReport) {
+    destinationDir = file("$buildDir/reports/allTests")
+    reportOn subprojects*.test
+}*/
+
+/*test {
+    useTestNG(){
+        options.suites("testng.xml")
+        useDefaultListeners = true
+    }
+}*/
+
+/*test {
+    useTestNG()
+    options {
+        listeners << 'org.uncommons.reportng.HTMLReporter'
+        listeners << 'org.uncommons.reportng.JUnitXMLReporter'
+    }
+}*/
+
+
+//}
+
+
+//or like this (if you want to use different CSS stylesheet and get rid of original reports):
+/*
+test {
+    useTestNG()
+    systemProperties "org.uncommons.reportng.stylesheet": "${projectDir}/resources/hudsonesque.css"
+    options {
+        listeners << 'org.uncommons.reportng.HTMLReporter'
+        listeners << 'org.uncommons.reportng.JUnitXMLReporter'
+    }
+    useDefaultListeners = false
+}*/

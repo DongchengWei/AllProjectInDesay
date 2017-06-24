@@ -1,0 +1,125 @@
+[36minfo[39m: Welcome to Appium v1.4.16 (REV ae6877eff263066b26328d457bd285c0cc62430d)
+[36minfo[39m: Appium REST http interface listener started on 127.0.0.1:6669
+[36minfo[39m: [debug] Non-default server args: {"udid":"9c270507","address":"127.0.0.1","port":6669,"bootstrapPort":10001,"sessionOverride":true}
+[36minfo[39m: Console LogLevel: debug
+[36minfo[39m: [37m-->[39m [37mPOST[39m [37m/wd/hub/session[39m [90m{"capabilities":[{"desiredCapabilities":{"appPackage":"com.android.launcher","appActivity":"com.thundersoft.hmi.TSLauncher","platformVersion":"5.1.1","unicodeKeyboard":"True","udid":"9c270507","platformName":"Android","deviceName":"9c270507","resetKeyboard":"True"}},{"requiredCapabilities":{}}],"desiredCapabilities":{"appPackage":"com.android.launcher","appActivity":"com.thundersoft.hmi.TSLauncher","platformVersion":"5.1.1","unicodeKeyboard":"True","udid":"9c270507","platformName":"Android","deviceName":"9c270507","resetKeyboard":"True"},"requiredCapabilities":{}}[39m
+[36minfo[39m: Client User-Agent string: Apache-HttpClient/4.5.2 (Java/1.8.0_92)
+[33mwarn[39m: Converting cap unicodeKeyboard from string to boolean. This might cause unexpected behavior.
+[33mwarn[39m: Converting cap resetKeyboard from string to boolean. This might cause unexpected behavior.
+[36minfo[39m: [debug] Didn't get app but did get Android package, will attempt to launch it on the device
+[36minfo[39m: [debug] Creating new appium session 59242f1c-ea30-4250-843c-9810c9b98d50
+[36minfo[39m: Starting android appium
+[36minfo[39m: [debug] Getting Java version
+[36minfo[39m: Java version is: 1.7.0_67
+[36minfo[39m: [debug] Checking whether adb is present
+[36minfo[39m: [debug] Using adb from D:\android\android-sdk-windows\platform-tools\adb.exe
+[33mwarn[39m: No app capability, can't parse package/activity
+[36minfo[39m: [debug] Using fast reset? true
+[36minfo[39m: [debug] Preparing device for session
+[36minfo[39m: [debug] Not checking whether app is present since we are assuming it's already on the device
+[36minfo[39m: Retrieving device
+[36minfo[39m: [debug] Trying to find a connected android device
+[36minfo[39m: [debug] Getting connected devices...
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe devices
+[36minfo[39m: [debug] 2 device(s) connected
+[36minfo[39m: Found device 9c270507
+[36minfo[39m: [debug] Setting device id to 9c270507
+[36minfo[39m: [debug] Waiting for device to be ready and to respond to shell commands (timeout = 5)
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 wait-for-device
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 shell "echo 'ready'"
+[36minfo[39m: [debug] Starting logcat capture
+[36minfo[39m: [debug] Getting device API level
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 shell "getprop ro.build.version.sdk"
+[36minfo[39m: [debug] Device is at API Level 23
+[36minfo[39m: Device API level is: 23
+[36minfo[39m: [debug] Extracting strings for language: default
+[36minfo[39m: [debug] Apk doesn't exist locally
+[36minfo[39m: [debug] Could not get strings, but it looks like we had an old strings file anyway, so ignoring
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 shell "rm -rf /data/local/tmp/strings.json"
+[36minfo[39m: [debug] Not uninstalling app since server not started with --full-reset
+[36minfo[39m: [debug] Skipping install since we launched with a package instead of an app path
+[36minfo[39m: [debug] Forwarding system:10001 to device:4724
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 forward tcp:10001 tcp:4724
+[36minfo[39m: [debug] Pushing appium bootstrap to device...
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 push "D:\\android\\Appium\\node_modules\\appium\\build\\android_bootstrap\\AppiumBootstrap.jar" /data/local/tmp/
+[36minfo[39m: [debug] Enabling Unicode keyboard support
+[36minfo[39m: [debug] Pushing unicode ime to device...
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 install "D:\android\Appium\node_modules\appium\build\unicode_ime_apk\UnicodeIME-debug.apk"
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 shell "settings get secure default_input_method"
+[36minfo[39m: [debug] Unsetting IME 'com.sec.android.inputmethod/.SamsungKeypad'
+[36minfo[39m: [debug] Setting IME to 'io.appium.android.ime/.UnicodeIME'
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 shell "ime enable io.appium.android.ime/.UnicodeIME"
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 shell "ime set io.appium.android.ime/.UnicodeIME"
+[36minfo[39m: [debug] Pushing settings apk to device...
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 install "D:\android\Appium\node_modules\appium\build\settings_apk\settings_apk-debug.apk"
+[36minfo[39m: [debug] Pushing unlock helper app to device...
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 install "D:\android\Appium\node_modules\appium\build\unlock_apk\unlock_apk-debug.apk"
+[36minfo[39m: Starting App
+[36minfo[39m: [debug] Attempting to kill all 'uiautomator' processes
+[36minfo[39m: [debug] Getting all processes with 'uiautomator'
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 shell "ps 'uiautomator'"
+[36minfo[39m: [debug] No matching processes found
+[36minfo[39m: [debug] Running bootstrap
+[36minfo[39m: [debug] spawning: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 shell uiautomator runtest AppiumBootstrap.jar -c io.appium.android.bootstrap.Bootstrap -e pkg com.android.launcher -e disableAndroidWatchers false
+[36minfo[39m: [debug] [90m[UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS: numtests=1[39m
+[36minfo[39m: [debug] [90m[UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS: stream=[39m
+[36minfo[39m: [debug] [90m[UIAUTOMATOR STDOUT] io.appium.android.bootstrap.Bootstrap:[39m
+[36minfo[39m: [debug] [90m[UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner[39m
+[36minfo[39m: [debug] [90m[UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS: test=testRunServer[39m
+[36minfo[39m: [debug] [90m[UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS: class=io.appium.android.bootstrap.Bootstrap[39m
+[36minfo[39m: [debug] [90m[UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS: current=1[39m
+[36minfo[39m: [debug] [90m[UIAUTOMATOR STDOUT] INSTRUMENTATION_STATUS_CODE: 1[39m
+[36minfo[39m: [debug] [BOOTSTRAP] [debug] Socket opened on port 4724
+[36minfo[39m: [debug] [BOOTSTRAP] [debug] Appium Socket Server Ready
+[36minfo[39m: [debug] [BOOTSTRAP] [debug] Loading json...
+[36minfo[39m: [debug] [BOOTSTRAP] [debug] Registered crash watchers.
+[36minfo[39m: [debug] Waking up device if it's not alive
+[36minfo[39m: [debug] Pushing command to appium work queue: ["wake",{}]
+[36minfo[39m: [debug] [BOOTSTRAP] [debug] Client connected
+[36minfo[39m: [debug] [BOOTSTRAP] [debug] Got data from client: {"cmd":"action","action":"wake","params":{}}
+[36minfo[39m: [debug] [BOOTSTRAP] [debug] Got command of type ACTION
+[36minfo[39m: [debug] [BOOTSTRAP] [debug] Got command action: wake
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 shell "dumpsys window"
+[36minfo[39m: [debug] [BOOTSTRAP] [debug] Returning result: {"status":0,"value":true}
+[36minfo[39m: Unlocking screen
+[36minfo[39m: [debug] Screen is locked, trying to unlock
+[36minfo[39m: [debug] Getting device API level
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 shell "getprop ro.build.version.sdk"
+[36minfo[39m: [debug] Device is at API Level 23
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 shell "am start -S -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -f 0x10200000 -n io.appium.unlock/.Unlock"
+[36minfo[39m: [debug] [BOOTSTRAP] [debug] Emitting system alert message
+[36minfo[39m: [debug] Emitting alert message...
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 shell "dumpsys window"
+[36minfo[39m: [debug] Screen is locked, trying to unlock
+[36minfo[39m: [debug] Getting device API level
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 shell "getprop ro.build.version.sdk"
+[36minfo[39m: [debug] Device is at API Level 23
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 shell "am start -S -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -f 0x10200000 -n io.appium.unlock/.Unlock"
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 shell "dumpsys window"
+[36minfo[39m: [debug] Screen is locked, trying to unlock
+[36minfo[39m: [debug] Getting device API level
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 shell "getprop ro.build.version.sdk"
+[36minfo[39m: [debug] Device is at API Level 23
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 shell "am start -S -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -f 0x10200000 -n io.appium.unlock/.Unlock"
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 shell "dumpsys window"
+[36minfo[39m: [debug] Screen is unlocked, continuing
+[36minfo[39m: [debug] Pushing command to appium work queue: ["getDataDir",{}]
+[36minfo[39m: [debug] [BOOTSTRAP] [debug] Got data from client: {"cmd":"action","action":"getDataDir","params":{}}
+[36minfo[39m: [debug] [BOOTSTRAP] [debug] Got command of type ACTION
+[36minfo[39m: [debug] [BOOTSTRAP] [debug] Got command action: getDataDir
+[36minfo[39m: [debug] [BOOTSTRAP] [debug] Returning result: {"status":0,"value":"\/data\/local\/tmp"}
+[36minfo[39m: [debug] dataDir set to: /data/local/tmp
+[36minfo[39m: [debug] Pushing command to appium work queue: ["compressedLayoutHierarchy",{"compressLayout":false}]
+[36minfo[39m: [debug] [BOOTSTRAP] [debug] Got data from client: {"cmd":"action","action":"compressedLayoutHierarchy","params":{"compressLayout":false}}
+[36minfo[39m: [debug] [BOOTSTRAP] [debug] Got command of type ACTION
+[36minfo[39m: [debug] [BOOTSTRAP] [debug] Got command action: compressedLayoutHierarchy
+[36minfo[39m: [debug] [BOOTSTRAP] [debug] Returning result: {"status":0,"value":false}
+[36minfo[39m: [debug] Getting device API level
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 shell "getprop ro.build.version.sdk"
+[36minfo[39m: [debug] Device is at API Level 23
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 shell "am start -S -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -f 0x10200000 -n com.android.launcher/com.thundersoft.hmi.TSLauncher"
+[36minfo[39m: [debug] We tried to start an activity that doesn't exist, retrying with . prepended to activity
+[36minfo[39m: [debug] Getting device API level
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 shell "getprop ro.build.version.sdk"
+[36minfo[39m: [debug] Device is at API Level 23
+[36minfo[39m: [debug] executing cmd: D:\android\android-sdk-windows\platform-tools\adb.exe -s 9c270507 shell "am start -S -a android.intent.action.MAIN -c android.intent.category.LAUNCHER -f 0x10200000 -n com.android.launcher/.com.thundersoft.hmi.TSLauncher"

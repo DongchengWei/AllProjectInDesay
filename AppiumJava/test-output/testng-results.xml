@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="DemoSuite" duration-ms="6151" started-at="2017-04-06T10:46:52Z" finished-at="2017-04-06T10:46:59Z">
+    <groups>
+    </groups>
+    <test name="Demo" duration-ms="6151" started-at="2017-04-06T10:46:52Z" finished-at="2017-04-06T10:46:59Z">
+      <class name="com.cases.Demo">
+        <test-method status="PASS" signature="beforeSuite()[pri:0, instance:com.cases.Demo@6d00a15d]" name="beforeSuite" is-config="true" duration-ms="6738" started-at="2017-04-06T18:46:46Z" finished-at="2017-04-06T18:46:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeSuite -->
+        <test-method status="PASS" signature="initDriver()[pri:0, instance:com.cases.Demo@6d00a15d]" name="initDriver" is-config="true" duration-ms="12" started-at="2017-04-06T18:46:52Z" finished-at="2017-04-06T18:46:52Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initDriver -->
+        <test-method status="PASS" signature="intoSettingPage()[pri:0, instance:com.cases.Demo@6d00a15d]" name="intoSettingPage" duration-ms="4593" started-at="2017-04-06T18:46:52Z" finished-at="2017-04-06T18:46:57Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- intoSettingPage -->
+        <test-method status="PASS" signature="afterClass()[pri:0, instance:com.cases.Demo@6d00a15d]" name="afterClass" is-config="true" duration-ms="0" started-at="2017-04-06T18:46:57Z" finished-at="2017-04-06T18:46:57Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterClass -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:com.cases.Demo@6d00a15d]" name="afterTest" is-config="true" duration-ms="1532" started-at="2017-04-06T18:46:57Z" finished-at="2017-04-06T18:46:59Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+      </class> <!-- com.cases.Demo -->
+    </test> <!-- Demo -->
+  </suite> <!-- DemoSuite -->
+</testng-results>

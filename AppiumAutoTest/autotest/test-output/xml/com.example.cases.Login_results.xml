@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Test"
+           tests="5"
+           failures="4"
+           errors="0"
+           skipped="0"
+           time="194.569">
+  <properties />
+            <testcase name="loginEmpty" time="36.069" classname="com.example.cases.Login">
+                <failure type="java.lang.Throwable"
+                  message="(null)"
+              >
+<![CDATA[java.lang.Throwable
+  
+报错信息: 帐号密码为空是否登录成功 expected [true] but found [false].
+报错方法名:loginEmpty(
+报错类:Login
+报错行号:66)
+  com.example.cases.Login.loginEmpty(Login.java:66)
+]]>
+      </failure>
+
+          </testcase>
+            <testcase name="loginErrorNum" time="44.258" classname="com.example.cases.Login">
+                <failure type="java.lang.Throwable"
+                  message="(null)"
+              >
+<![CDATA[java.lang.Throwable
+  
+报错信息: 帐号密码格式不对是否登录成功 expected [true] but found [false].
+报错方法名:loginErrorNum(
+报错类:Login
+报错行号:43)
+  com.example.cases.Login.loginErrorNum(Login.java:43)
+]]>
+      </failure>
+
+          </testcase>
+            <testcase name="loginErrorUser" time="46.462" classname="com.example.cases.Login">
+                <failure type="java.lang.Throwable"
+                  message="(null)"
+              >
+<![CDATA[java.lang.Throwable
+  
+报错信息: 帐号对密码错误是否登录成功 expected [true] but found [false].
+报错方法名:loginErrorUser(
+报错类:Login
+报错行号:33)
+  com.example.cases.Login.loginErrorUser(Login.java:33)
+]]>
+      </failure>
+
+          </testcase>
+            <testcase name="loginChinese" time="44.090" classname="com.example.cases.Login">
+                <failure type="java.lang.Throwable"
+                  message="(null)"
+              >
+<![CDATA[java.lang.Throwable
+  
+报错信息: 帐号密码为中文是否登录成功 expected [true] but found [false].
+报错方法名:loginChinese(
+报错类:Login
+报错行号:54)
+  com.example.cases.Login.loginChinese(Login.java:54)
+]]>
+      </failure>
+
+          </testcase>
+  
+  
+            <testcase name="loginConfim" time="23.690" classname="com.example.cases.Login" />
+      
+</testsuite>

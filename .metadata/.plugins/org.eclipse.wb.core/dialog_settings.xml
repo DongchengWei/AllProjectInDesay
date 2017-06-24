@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.wb.internal.core.nls.ui.NlsDialog">
+		<item value="480" key="x"/>
+		<item value="960" key="width"/>
+		<item value="262" key="y"/>
+		<item value="525" key="height"/>
+	</section>
+	<section name="org.eclipse.wb.internal.core.model.property.editor.string.StringPropertyDialog">
+		<item value="704" key="x"/>
+		<item value="529" key="width"/>
+		<item value="326" key="y"/>
+		<item value="379" key="height"/>
+	</section>
+</section>

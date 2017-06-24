@@ -1,0 +1,7 @@
+package com.simpletest;
+
+import com.android.uiautomator.testrunner.UiAutomatorTestCase;
+
+public class HuConnectTest extends UiAutomatorTestCase {
+
+}

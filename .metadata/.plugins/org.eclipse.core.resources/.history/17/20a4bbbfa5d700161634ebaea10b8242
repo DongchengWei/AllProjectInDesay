@@ -1,0 +1,706 @@
+package com.compa;
+
+import java.io.IOException;
+
+import com.android.uiautomator.core.UiDevice;
+import com.android.uiautomator.core.UiObject;
+import com.android.uiautomator.core.UiObjectNotFoundException;
+import com.android.uiautomator.core.UiScrollable;
+import com.android.uiautomator.core.UiSelector;
+import com.android.uiautomator.testrunner.UiAutomatorTestCase;
+import com.utils.RunTestCase;
+
+import android.os.RemoteException;
+import android.util.Log;
+
+public class CompaTest extends UiAutomatorTestCase {
+
+	private static final int TESTTIMES = 100;			//压力测试执行的次数
+	String BLUETOOTH_DEVICE_NAME = "testphone";			//待测手机蓝牙名字
+	String BLUETOOTH_HELP_DEVICE_NAME = "helpphone";	//辅助手机蓝牙名字
+	final int WAITFOREXISTSTIME = 10000;				//等待超时时间
+	int testCaseCounter = 0;
+	
+	//调用自动运行cmd命令
+	public static void main(String[] args) throws IOException {  
+		 
+		RunTestCase runTestCase=new RunTestCase("Compatible",  
+				 "com.compa.CompaTest", "", "2");  
+		runTestCase.setDebug(false);  
+		runTestCase.runUiautomator(); 
+	} 
+		 
+	public void testDemo(){
+	
+		try{
+			PrintInfo();
+			getUiDevice().wakeUp();
+			
+			testCaseCounter ++;
+//			HuPairedCheck();								//1.先匹配（主机发起配对）手动
+			testCaseCounter ++;
+//			switchDeviceTest();								//2.切换连接手机（已有配对记录但当前连接的是另一手机）
+//			testCaseCounter ++;
+//			PhoneConnToHu();								//3.手机连接车机测试             (此项通过说明主机断开通过5)
+//			testCaseCounter ++;
+//			PhoneDisconnect();  							//4.手机断开连接车机		(此项通过说明主机连接通过6)
+//			testCaseCounter ++;
+//			HuDisconnect();									//5.主机断开连接			断开
+//			testCaseCounter ++;
+//			HuConnectToPhone(); 							//6.主机连接手机			断开
+//			testCaseCounter ++;
+			RebootHuBTAutoConnectCheck();					//7.主机重启蓝牙开关，自动连接检查                       
+//			testCaseCounter ++;
+//			RebootPhoneBT();								//8.手机重启蓝牙开关检查蓝牙是否自动连接
+//			testCaseCounter ++;
+//			RebootPhonePower();								//9.重启手机检查蓝牙是否自动连接
+//			testCaseCounter ++;
+//			
+//			//Media
+//			ReconnectBTThenHuNextAndPre();					//10.重新连接蓝牙后主机上下一曲	OK
+//			testCaseCounter ++;
+//			HuStopStartPlay();								//11.由主机播放停止				OK
+//			testCaseCounter ++;
+//	        PlayListSuppurt();								//12.播放列表支持				OK
+//	        testCaseCounter ++;
+//			HuChangeLoopMode();								//13.车机更改随机与重复模式（手机模式随着变化）
+			//PhoneChangePlayMode();						//14.手机更改随机与重复模式（车机模式随着变化）
+			//SwitchWIFIIsPlayNormal();						//15.播放音乐时打开wifi开关开音乐是否正常
+			//ID3InfoCheck();								//16.主机ID3功能检查BLUETOOTH_DEVICE_NAME
+			
+			
+//			getUiDevice().pressHome();
+//			try {
+//				new UiObject(new UiSelector().className("android.widget.TextView")
+//				        .text("设置")).clickAndWaitForNewWindow();
+//				logAndPrint("Enter Settings");
+//			} catch (UiObjectNotFoundException e1) {
+//				logForResult("HuPairedCheck() failed: Can not find settings Object");
+//			}
+//			
+//	        try {
+//				new UiObject(new UiSelector().className("android.widget.RadioButton")
+//				        .text("蓝牙")).click();
+//				logAndPrint("Click Radio_Button bluetooth");
+//			} catch (UiObjectNotFoundException e1) {
+//				logForResult("HuPairedCheck() failed: Can not find Settings_Bluetooth_Button Object");
+//			}
+	        //System.out.println("=========点击蓝牙");
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void HuCheckPairedTest() {
+		try {
+			UiObject connectOK = new UiObject(new UiSelector().
+					className("android.widget.TextView").textContains("(已连接)"));
+			if (connectOK.exists()) {
+				logForResult("HuCheckPairedTest() pass: connected before!");
+			}else {
+				logAndPrint("WaitToConnectByHand(): is not connected,Plz Connect By hand!");
+				connectOK.waitForExists(30000);
+			}
+		} catch (Exception e) {
+			logForResult("WaitToConnectByHand() failed: can not find connected UiObject");
+		}
+
+	}
+
+	private void WaitToConnectByHand() {
+		try {
+			UiObject connectOK = new UiObject(new UiSelector().
+					className("android.widget.TextView").textContains("(已连接)"));
+			if (connectOK.exists()) {
+				logAndPrint("WaitToConnectByHand(): connected!");
+			}else {
+				logAndPrint("WaitToConnectByHand(): is not connected,Plz Connect By hand!");
+				connectOK.waitForExists(30000);
+			}
+		} catch (Exception e) {
+			logForResult(testCaseCounter + "WaitToConnectByHand() failed: can not find connected UiObject");
+		}
+	}
+	//1.主机发起配对测试，配对设备
+	private void HuPairedCheck() {
+		getUiDevice().pressHome();
+		try {
+			new UiObject(new UiSelector().className("android.widget.TextView")
+			        .text("设置")).clickAndWaitForNewWindow();
+		} catch (UiObjectNotFoundException e1) {
+			logForResult(testCaseCounter + ".HuPairedCheck() failed: Can not find settings Object");
+		}
+		logAndPrint("Enter Settings");
+		
+        try {
+			new UiObject(new UiSelector().className("android.widget.RadioButton")
+			        .text("蓝牙")).click();
+		} catch (UiObjectNotFoundException e1) {
+			logForResult(testCaseCounter + ".HuPairedCheck() failed: Can not find Settings_Bluetooth_Button Object");
+		}
+        //System.out.println("=========点击蓝牙");
+        logAndPrint("Click Radio_Button bluetooth");
+        sleep(5000);
+        
+        //查找可用设备中是否存在目标设备,并点击设备进行匹配
+        for (int retryCounter = 0; retryCounter < 5; retryCounter++) {//尝试5次
+        	try {
+        		UiScrollable deviceList = new UiScrollable( new UiSelector().
+        				resourceId("com.android.settings:id/ts_bluetooth_dev_list"));
+        		UiObject targetDevice = deviceList.getChildByText(new UiSelector().className("android.widget.TextView"), BLUETOOTH_DEVICE_NAME,true);
+        		targetDevice.click();//点击配对
+        		retryCounter = 10;//大于5直接退出循环
+        		sleep(10000);//等待对方设备确认连接，这个延时必须要
+        	} catch (UiObjectNotFoundException e) {
+        		logForResult(testCaseCounter + ".HuPairedCheck() failed : targetDevice UiObject not found");
+        	}
+        	//刷新列表
+        	try {
+        		new UiObject(new UiSelector().resourceId("com.android.settings:id/ts_bluetooth_refresh")).click();
+        	} catch (UiObjectNotFoundException e1) {
+        		logAndPrint("refresh the devices list UiObject not found");
+        	}
+			sleep(3000);
+		}
+        
+        //sleep(10000);//等待对方设备确认连接，这个延时必须要
+        //查找已匹配列表中是否存在目标设备
+        try {
+        	UiScrollable devicePairedList = new UiScrollable( new UiSelector().
+        			resourceId("com.android.settings:id/ts_bluetooth_pair_dev_list"));//获取listview对象
+			UiObject targetPairedDevice = devicePairedList.getChildByText(new UiSelector()//根据文本获取listview中对应item
+					.className("android.widget.TextView"), BLUETOOTH_DEVICE_NAME);
+			sleep(10000);
+			if (targetPairedDevice.exists()) {//如果存在说明已配对成功
+				logForResult(testCaseCounter + ".HuPairedCheck() pass");
+				targetPairedDevice.click();//点击连接
+			}else {
+				logForResult(testCaseCounter + ".HuPairedCheck() failed");
+			}
+		} catch (UiObjectNotFoundException e) {
+			logForResult(testCaseCounter + ".HuPairedCheck() failed : UiObject not found");
+		}
+	}
+	//13.检查是否支持改变播放循环模式，蓝牙必须已经连接
+	private void HuChangeLoopMode() {
+		UiDevice.getInstance().pressHome();
+    	try {
+			new UiObject(new UiSelector().className("android.widget.TextView")
+					.text("设置")).clickAndWaitForNewWindow();
+		} catch (UiObjectNotFoundException e) {
+			logForResult(testCaseCounter + "HuChangeLoopMode() failed: can not enter settings");
+		}
+    	logAndPrint("Enter Settings");
+    	
+    	try {
+			new UiObject(new UiSelector().className("android.widget.RadioButton")
+					.text("蓝牙")).click();
+		} catch (UiObjectNotFoundException e) {
+			logForResult(testCaseCounter + "HuChangeLoopMode() failed: can not enter bluetooth");
+		}
+    	logAndPrint("Click Bluetooth");
+    	
+		WaitToConnectByHand();//检查蓝牙是否已连接，没有连接则等待30秒手动连接
+		EnterWhichMedia("蓝牙设备");	//com.thundersoft.mediaplayer:id/iv_ts_media_btn_play_list
+		UiObject playLoopMenuObj = new UiObject(new UiSelector().resourceId("com.thundersoft.mediaplayer:id/iv_ts_media_btn_play_mode"));
+		try {
+			if (playLoopMenuObj.isEnabled()) {
+				logForResult(testCaseCounter + "HuChangeLoopMode(): Suport to change Play Loop Mode");
+			}else{
+				logForResult(testCaseCounter + "HuChangeLoopMode(): Do not Suport change Play Loop Mode");
+			}
+		} catch (UiObjectNotFoundException e) {
+			logForResult(testCaseCounter + "HuChangeLoopMode() Failed:Can not find play_loop_mode_button in bluetooth media");
+		}
+	}
+	
+	//12.检查是否支持播放列表，蓝牙必须已经先连接
+	private void PlayListSuppurt() {
+		UiDevice.getInstance().pressHome();
+    	try {
+			new UiObject(new UiSelector().className("android.widget.TextView")
+					.text("设置")).clickAndWaitForNewWindow();
+		} catch (UiObjectNotFoundException e) {
+			logForResult(testCaseCounter + "PlayListSuppurt() failed: can not enter settings");
+		}
+    	logAndPrint("Enter Settings");
+    	
+    	try {
+			new UiObject(new UiSelector().className("android.widget.RadioButton")
+					.text("蓝牙")).click();
+		} catch (UiObjectNotFoundException e) {
+			logForResult(testCaseCounter + "PlayListSuppurt() failed: can not enter bluetooth");
+		}
+    	logAndPrint("Click Bluetooth");
+    	
+		WaitToConnectByHand();//检查蓝牙是否已连接，没有连接则等待30秒手动连接
+		
+		EnterWhichMedia("蓝牙设备");	//com.thundersoft.mediaplayer:id/iv_ts_media_btn_play_list
+		UiObject playListMenuObj = new UiObject(new UiSelector().resourceId("com.thundersoft.mediaplayer:id/iv_ts_media_btn_play_list"));
+		try {
+			if (playListMenuObj.isEnabled()) {
+				logForResult(testCaseCounter + "PlayListSuppurt(): Suport Play List");
+			}else{
+				logForResult(testCaseCounter + "PlayListSuppurt(): Do not Suport Play List");
+			}
+		} catch (UiObjectNotFoundException e) {
+			logAndPrint(testCaseCounter + "PlayListSuppurt():Can not find play_list_button in bluetooth media ");
+		}
+	}
+	
+	//11.主机播放和暂停测试，蓝牙必须已经连接
+	private void HuStopStartPlay() {
+		
+		UiDevice.getInstance().pressHome();
+    	try {
+			new UiObject(new UiSelector().className("android.widget.TextView")
+					.text("设置")).clickAndWaitForNewWindow();
+		} catch (UiObjectNotFoundException e) {
+			logForResult(testCaseCounter + "PhoneConnToHu() failed: can not enter settings");
+		}
+    	logAndPrint("Enter Settings");
+    	
+    	try {
+			new UiObject(new UiSelector().className("android.widget.RadioButton")
+					.text("蓝牙")).click();
+		} catch (UiObjectNotFoundException e) {
+			logForResult(testCaseCounter + "PhoneConnToHu() failed: can not enter bluetooth");
+		}
+    	logAndPrint("Click Bluetooth");
+    	
+		WaitToConnectByHand();//检查蓝牙是否已连接，没有连接则等待30秒手动连接
+		EnterWhichMedia("蓝牙设备");					//进入蓝牙设备com.thundersoft.mediaplayer:id/iv_ts_media_btn_pause
+		
+		try {
+			String nowPlayTime = new UiObject(new UiSelector().resourceId("com.thundersoft.mediaplayer:id/tv_start_time")).getText();
+			sleep(5000);								//过5秒再读取播放时间
+			String fiveSecPlayTime = new UiObject(new UiSelector().resourceId("com.thundersoft.mediaplayer:id/tv_start_time")).getText();
+			//暂停按钮
+			UiObject pauseObject = new UiObject(new UiSelector().resourceId("com.thundersoft.mediaplayer:id/iv_ts_media_btn_pause"));
+			if (nowPlayTime.equals(fiveSecPlayTime)) {	//时间相同说明处在暂停状态
+				pauseObject.click();					//点击使其播放
+				sleep(5000);							//播放5秒后再检查时间
+				String start5SPlayTime = new UiObject(new UiSelector().resourceId("com.thundersoft.mediaplayer:id/tv_start_time")).getText();
+				if (start5SPlayTime.equals(fiveSecPlayTime)) {
+					logAndPrint("Playing fail");
+					logForResult(testCaseCounter + "HuStopStartPlay() Failed");
+				}else {
+					logAndPrint("Playing OK");
+					//从暂停状态播放后，要再暂停看看能否暂停
+					pauseObject.click();				//点击使其暂停
+					
+					sleep(2000);//开始暂停时间(为防止点击后过段时间才响应加点延时确保时间暂停)
+					String pausePlayTime = new UiObject(new UiSelector().resourceId("com.thundersoft.mediaplayer:id/tv_start_time")).getText();
+					sleep(5000);//暂停5秒后再检查时间
+					String pause5SPlayTime = new UiObject(new UiSelector().resourceId("com.thundersoft.mediaplayer:id/tv_start_time")).getText();
+					if (pause5SPlayTime.equals(pausePlayTime)) {
+						logAndPrint("Play then Pause OK");
+						logForResult(testCaseCounter + "HuStopStartPlay() Pass");
+					}else {
+						logAndPrint("Play then Pause Failed");
+						logForResult(testCaseCounter + "HuStopStartPlay() failed");
+					}
+				}
+			}else { // not the same is playing
+				pauseObject.click();//点击使其暂停
+				
+				sleep(2000);//开始暂停时间(为防止点击后过段时间才响应加点延时确保时间暂停)
+				String pausePlayTime = new UiObject(new UiSelector().resourceId("com.thundersoft.mediaplayer:id/tv_start_time")).getText();
+				sleep(5000);//暂停5秒后再检查时间
+				String pause5SPlayTime = new UiObject(new UiSelector().resourceId("com.thundersoft.mediaplayer:id/tv_start_time")).getText();
+				if (pause5SPlayTime.equals(pausePlayTime)) {
+					logAndPrint("Pause OK");
+					
+					//暂停后再播放，能播放说明case可以通过
+					pauseObject.click();//点击使其播放
+					sleep(5000);//播放5秒后再检查时间
+					String afterPlay = new UiObject(new UiSelector().resourceId("com.thundersoft.mediaplayer:id/tv_start_time")).getText();
+					if (afterPlay.equals(pause5SPlayTime)) {
+						logAndPrint("Pause then Play Failed");
+						logForResult(testCaseCounter + "HuStopStartPlay() Failed");//播放后时间还是播放时间还是一样说明没有播放成功
+					}else {
+						logAndPrint("Pause then Play OK");
+						logForResult(testCaseCounter + "HuStopStartPlay() Pass");  //播放成功
+					}
+				}else {
+					logAndPrint("Pause Failed");
+					logForResult(testCaseCounter + "HuStopStartPlay() failed");
+				}
+			}
+		} catch (UiObjectNotFoundException e) {
+			logForResult(testCaseCounter + "HuStopStartPlay() failed: UiObject not fount ");
+		}
+	}
+	
+	//10.在执行重新连接后由主机上/下一首     ，蓝牙必须已连接
+	private void ReconnectBTThenHuNextAndPre() {
+		
+    	EnterWhichMedia("蓝牙设备");//进入蓝牙设备
+    	
+		getUiDevice().pressHome();
+		try {
+			new UiObject(new UiSelector().className("android.widget.TextView")
+					.text("设置")).clickAndWaitForNewWindow();
+			logAndPrint("Enter Settings");
+			
+			new UiObject(new UiSelector().className("android.widget.RadioButton")
+					.text("蓝牙")).click();
+			logAndPrint("Click Bluetooth");
+			
+			WaitToConnectByHand();//检查蓝牙是否已连接，没有连接则等待30秒手动连接
+			//点击已连接的设备，先断开此设备的连接
+			logAndPrint("Click " + BLUETOOTH_DEVICE_NAME);
+			new UiObject(new UiSelector().
+					className("android.widget.TextView").text(BLUETOOTH_DEVICE_NAME)).clickAndWaitForNewWindow();
+			
+			logAndPrint("Confirm to disconnect");
+			new UiObject(new UiSelector().resourceId("com.android.settings:id/dialog_confirm"))
+			.clickAndWaitForNewWindow();//弹出确认断开对话框，点击确认
+			
+			//点击连接目标设备
+			logAndPrint("Click to connect " + BLUETOOTH_DEVICE_NAME);
+			new UiObject(new UiSelector().
+					className("android.widget.TextView").text(BLUETOOTH_DEVICE_NAME)).click();
+			UiObject connectOK = new UiObject(new UiSelector().
+					className("android.widget.TextView").textContains("(已连接)"));
+			connectOK.waitForExists(20000);//在20秒内等待连接上
+			if (connectOK.exists()) {
+				logAndPrint("reconnect sucess!");
+			}else {
+				logAndPrint("reconnect Failed!");
+			}
+			
+			EnterWhichMedia("蓝牙设备");//进入蓝牙设备
+			
+			//获取当前曲目com.thundersoft.mediaplayer:id/tv_ts_media_music_title
+			String musicTitle = new UiObject(new UiSelector().resourceId("com.thundersoft.mediaplayer:id/tv_ts_media_music_title")).getText();
+			logAndPrint("Before Pre Playing:" + musicTitle);
+			if (musicTitle!=null && !musicTitle.equals("")) {
+				//com.thundersoft.mediaplayer:id/iv_ts_media_btn_previous //上一曲
+				new UiObject(new UiSelector().resourceId("com.thundersoft.mediaplayer:id/iv_ts_media_btn_previous")).click();//上一曲按钮
+				sleep(10000);//播放10s
+				String preMusicTitle = new UiObject(new UiSelector().
+						resourceId("com.thundersoft.mediaplayer:id/tv_ts_media_music_title")).getText();//上一曲后的歌曲名
+				
+				if (musicTitle.equals(preMusicTitle)) {//说明当前播放的是同一首歌
+					logForResult(testCaseCounter + "Previous Failed");//上一曲失败
+				}else {
+					logAndPrint("After Pre Playing:" + preMusicTitle + "-->Previous Pass");//与点击上一曲之前的歌曲不同com.thundersoft.mediaplayer:id/iv_ts_media_btn_next
+					new UiObject(new UiSelector().resourceId("com.thundersoft.mediaplayer:id/iv_ts_media_btn_next")).click();//下一曲
+					sleep(10000);//下一曲 播放10s
+					String nextMusicTitle = new UiObject(new UiSelector().resourceId("com.thundersoft.mediaplayer:id/tv_ts_media_music_title")).getText();
+					if (nextMusicTitle.equals(musicTitle)) {
+						logAndPrint("After next Playing:" + nextMusicTitle + "-->Next Pass");
+						logForResult(testCaseCounter + "ReconnectBTThenHuNextAndPre() Pass"); 
+					}else {
+						logAndPrint("Next Failed");
+						logForResult(testCaseCounter + "ReconnectBTThenHuNextAndPre() Failed");
+					}
+				}
+				
+			}
+		} catch (UiObjectNotFoundException e) {
+			logForResult(testCaseCounter + "ReconnectBTThenHuNextAndPre failed: UiObject not found");
+		}
+	}
+	
+	//自动返回HOME后进入媒体的四个界面中的一个，参数为目标界面：FM/AM   蓝牙设备    媒体库    本地存储
+	private void EnterWhichMedia(String mediaType) {
+		
+		getUiDevice().pressHome();
+		//com.android.launcher:id/ts_home_button_item_media_id
+		try {
+			new UiObject(new UiSelector().resourceId("com.android.launcher:id/ts_home_button_item_media_id")
+					).clickAndWaitForNewWindow();
+		} catch (UiObjectNotFoundException e) {
+			logForResult("UiObjectNotFoundException: Can not find MultiMedia UiObject");
+		}
+    	logAndPrint("Enter MultiMedia");
+    	
+		int counter = 0;
+        //com.thundersoft.mediaplayer:id/media_title
+		UiObject mediaNext = new UiObject(new UiSelector().resourceId("com.thundersoft.mediaplayer:id/media_next"));
+        UiObject playerMedia = new UiObject(new UiSelector().resourceId("com.thundersoft.mediaplayer:id/media_title").text(mediaType));
+        
+        for (counter=0; counter<6; counter++){
+        	if(playerMedia.exists()){
+        		logAndPrint("Found " + mediaType);
+        		counter = 10;//使其大于5退出
+        	}else {
+        		counter ++;
+        		try {
+					mediaNext.click();
+				} catch (UiObjectNotFoundException e) {
+					logForResult("UiObjectNotFoundException: Can not find media_next button");
+				}
+        		sleep(1000);
+        		if(counter==6){
+        			logForResult("Can not find " + mediaType + " in Four Pages");
+        		}
+        	}
+        }
+	}
+	
+	
+	//9.重启手机测试是否自动连接
+	private void RebootPhonePower() {
+		logAndPrint("\r\n\r\n          Please reboot Phone in 60s... \r\n");
+		UiObject connectOK = new UiObject(new UiSelector().
+				className("android.widget.TextView").textContains("(已连接)"));
+		connectOK.waitUntilGone(30000);
+		if (connectOK.exists()) {
+			logAndPrint("Still Connected:Phone have not reboot,Plz reboot");
+			logForResult(testCaseCounter + "RebootPhonePower() Fail!");
+		}else {
+			logAndPrint("Connected gone: phone rebooting...");
+			connectOK.waitForExists(120000);
+			if (connectOK.exists()) {
+				logForResult(testCaseCounter + "RebootPhonePower() Pass!");
+			}else {
+				logForResult(testCaseCounter + "RebootPhonePower() Fail!");
+			}
+		}
+	}
+
+	
+	//8.重启手机蓝牙开关测试是否会重新连接
+	private void RebootPhoneBT() {
+		logAndPrint("\r\n\r\n          Please reboot Phone BT in 20s... \r\n");
+		UiObject connectOK = new UiObject(new UiSelector().
+				className("android.widget.TextView").textContains("(已连接)"));
+		connectOK.waitUntilGone(30000);
+		if (connectOK.exists()) {
+			logAndPrint("Have not reboot Phone BT!Plz check later!");
+			logForResult(testCaseCounter + "RebootPhoneBT() Fail!");
+		}else {
+			connectOK.waitForExists(60000);
+			if (connectOK.exists()) {
+				logForResult(testCaseCounter + "RebootPhoneBT() pass!");
+			}else {
+				logForResult(testCaseCounter + "RebootPhoneBT() failed!");
+			}
+		}
+	}
+
+	
+	//7.重启车机蓝牙开关
+	private void RebootHuBTAutoConnectCheck() {
+		
+		EnterSettingsWhichFragment("蓝牙");
+		WaitToConnectByHand();//检查蓝牙是否已连接，没有连接则等待30秒手动连接
+		
+		UiObject connectOK = new UiObject(new UiSelector().
+				className("android.widget.TextView").textContains("(已连接)"));
+		//重启车机蓝牙开关
+		try {
+			UiObject blueSwitch= new UiObject(new UiSelector().className("android.widget.Switch")); 
+			logAndPrint("Turn off Bluetooth");
+			blueSwitch.click();
+			sleep(10000);
+			if (!blueSwitch.isChecked()){
+				logAndPrint("Bluetooth is OFF");
+				logAndPrint("Turn on Bluetooth");
+				blueSwitch.click();
+				sleep(20000);
+				if (blueSwitch.isChecked()) {
+					logAndPrint("Bluetooth turn ON OK");
+				}else {
+					logAndPrint("Bluetooth turn ON Fail");
+				}
+				connectOK = new UiObject(new UiSelector().
+						className("android.widget.TextView").textContains("(已连接)"));
+				connectOK.waitForExists(30000);
+				if (connectOK.exists()) {
+					logForResult(testCaseCounter + "RebootHuBTAutoConnectCheck() PASS");
+				}else {
+					logForResult(testCaseCounter + "RebootHuBTAutoConnectCheck() Failed");
+				}
+			}
+		} catch (UiObjectNotFoundException e) {
+			logForResult(testCaseCounter + "RebootHuBTAutoConnectCheck() failed:bluetooth switch UiObject not found");
+		}
+	}
+
+
+	
+	private void HuDisconnect() {
+		logForResult(testCaseCounter + "HuDisconnect() OK!");
+	}
+
+	
+	private void HuConnectToPhone() {
+		logForResult(testCaseCounter + "HuConnectToPhone() OK!");
+	}
+
+	//3.由手机断开连接
+	public void PhoneDisconnect() {
+		WaitToConnectByHand();//检查蓝牙是否已连接，没有连接则等待30秒手动连接
+		logAndPrint("\r\n\r\n          Please disconnect via phone in 10s... \r\n");
+		UiObject connectOK = new UiObject(new UiSelector().
+				className("android.widget.TextView").textContains("(已连接)"));
+		connectOK.waitUntilGone(30000);
+		if (connectOK.exists()) {
+			logForResult(testCaseCounter + "PhoneDisconnect() failed: " + BLUETOOTH_DEVICE_NAME + " Failed!");
+		}else {
+			logForResult(testCaseCounter + "PhoneDisconnect() pass " + BLUETOOTH_DEVICE_NAME + " OK!");
+			logAndPrint("Reconnect after pass...");
+			UiObject targetDevice = new UiObject(new UiSelector().
+					className("android.widget.TextView").textContains(BLUETOOTH_DEVICE_NAME));
+			try {
+				targetDevice.click();
+				connectOK.waitForExists(10000);
+				if (connectOK.exists()) {
+					logAndPrint("Reconnect Ok");
+				}else {
+					logAndPrint(testCaseCounter + "Can not reconnect,plz check later");
+				}
+			} catch (UiObjectNotFoundException e) {
+				logAndPrint(testCaseCounter + "Can not reconnect,plz check later");
+			}
+		}
+	}
+	//3.手机连接车机
+	public void PhoneConnToHu(){
+		
+		getUiDevice().pressHome();
+    	try {
+			new UiObject(new UiSelector().className("android.widget.TextView")
+					.text("设置")).clickAndWaitForNewWindow();
+		} catch (UiObjectNotFoundException e) {
+			logForResult(testCaseCounter + ".PhoneConnToHu() failed: can not enter settings");
+		}
+    	logAndPrint("Enter Settings");
+    	
+    	try {
+			new UiObject(new UiSelector().className("android.widget.RadioButton")
+					.text("蓝牙")).click();
+		} catch (UiObjectNotFoundException e) {
+			logForResult(testCaseCounter + "PhoneConnToHu() failed: can not enter bluetooth");
+		}
+    	logAndPrint("Click Bluetooth");
+    	
+    	WaitToConnectByHand();//检查蓝牙是否已连接，没有连接则等待30秒手动连接
+		//先断开此设备的连接,测试手机主动连接
+    	logAndPrint("Click " + BLUETOOTH_DEVICE_NAME);
+		try {
+			new UiObject(new UiSelector().
+					className("android.widget.TextView").text(BLUETOOTH_DEVICE_NAME)).clickAndWaitForNewWindow();
+		} catch (UiObjectNotFoundException e) {
+			logForResult(testCaseCounter + "PhoneConnToHu() failed: can not enter settings");
+		}
+		
+		logAndPrint("Confirm to disconnect");
+		try {
+			new UiObject(new UiSelector().resourceId("com.android.settings:id/dialog_confirm"))
+			.clickAndWaitForNewWindow();
+		} catch (UiObjectNotFoundException e) {
+			logForResult(testCaseCounter + "PhoneConnToHu() failed: can not find dialog_confirm UiObject");
+		}//弹出确认断开对话框，点击确认
+		logAndPrint("\r\n\r\n         Please connect Hu via Phone in 10s... \r\n");
+		try {
+			UiObject connectOK = new UiObject(new UiSelector().
+					className("android.widget.TextView").textContains("(已连接)"));
+			connectOK.waitForExists(30000);
+			if (connectOK.exists()) {
+				logForResult(testCaseCounter + "PhoneConnToHu() Pass!");
+			}else {
+				logForResult(testCaseCounter + "PhoneConnToHu() Fail!");
+			}
+		} catch (Exception e) {
+			logForResult(testCaseCounter + "PhoneConnToHu() failed: can not find connected UiObject");
+		}
+	}
+	
+	
+	//2.车机已连接其他手机(HelpPhone)，先需要切换连接到待测手机TestPhone（两台手机都已配对）
+	public void switchDeviceTest(){
+		
+		try {
+			getUiDevice().pressHome();
+			new UiObject(new UiSelector().className("android.widget.TextView")
+					.text("设置")).clickAndWaitForNewWindow();
+			logAndPrint("Enter Settings");
+			
+			new UiObject(new UiSelector().className("android.widget.RadioButton")
+					.text("蓝牙")).click();
+			logAndPrint("Click Bluetooth");
+
+			UiObject connectOK = new UiObject(new UiSelector().
+					className("android.widget.TextView").textContains("(已连接)"));
+			connectOK.waitForExists(30000);
+			//点击该设备先断开连接
+	    	logAndPrint("Click " + BLUETOOTH_DEVICE_NAME);
+			new UiObject(new UiSelector().
+					className("android.widget.TextView").text(BLUETOOTH_DEVICE_NAME)).clickAndWaitForNewWindow();
+			
+			logAndPrint("Confirm to disconnect");
+			new UiObject(new UiSelector().resourceId("com.android.settings:id/dialog_confirm"))
+			.clickAndWaitForNewWindow();//弹出确认断开对话框，点击确认
+			connectOK.waitUntilGone(30000);
+			
+			//连接辅助手机
+			new UiObject(new UiSelector().className("android.widget.TextView").text(BLUETOOTH_HELP_DEVICE_NAME)).click();
+			connectOK.waitForExists(30000);
+			//断开辅助手机
+			new UiObject(new UiSelector().className("android.widget.TextView").text(BLUETOOTH_HELP_DEVICE_NAME)).clickAndWaitForNewWindow();
+			logAndPrint("Confirm to disconnect");
+			new UiObject(new UiSelector().resourceId("com.android.settings:id/dialog_confirm"))
+			.clickAndWaitForNewWindow();//弹出确认断开对话框，点击确认
+			//切换连接到待测手机
+        	UiScrollable testDeviceList = new UiScrollable( new UiSelector().
+        			resourceId("com.android.settings:id/ts_bluetooth_pair_dev_list"));
+			UiObject testtargetDevice = testDeviceList.getChildByText(new UiSelector().className("android.widget.TextView"), BLUETOOTH_DEVICE_NAME,true);
+			testtargetDevice.click();//点击配对
+			connectOK.waitForExists(30000);
+			if (connectOK.exists()) {
+				logForResult(testCaseCounter + ".switchDeviceTest:pass");
+			}else {
+				logForResult(testCaseCounter + ".switchDeviceTest:fail");
+			}
+		} catch (UiObjectNotFoundException e) {
+			logForResult(testCaseCounter + ".switchDeviceTest fail: can not find UiObject");
+		}
+	}
+	
+	//进入设置的某个界面（wifi，蓝牙，音效---）
+	public void EnterSettingsWhichFragment(String fragmentWhich) {
+		
+		getUiDevice().pressHome();
+    	try {
+			new UiObject(new UiSelector().className("android.widget.TextView")
+					.text("设置")).clickAndWaitForNewWindow();
+			logAndPrint("Enter Settings");
+			new UiObject(new UiSelector().className("android.widget.RadioButton")
+					.text(fragmentWhich)).click();
+			logAndPrint("Click Bluetooth");
+		} catch (UiObjectNotFoundException e) {
+			logForResult("EnterSettingsWhichFragment() failed: UiObjectNotFoundException");
+		}
+	}
+	
+	public void logForResult(String str) {
+		System.out.println("=========>>>>" + str + "<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+		Log.i("TESTRESULT","=========>>>>" + str + "<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
+	}
+	
+	
+	//控制台输出和logcat输出信息
+	public void logAndPrint(String str){
+		System.out.println("=========" + str);
+		Log.i("BLUETOOTRESULT","=========" + str);
+	}
+	
+	//输出版本信息
+	public void PrintInfo(){
+		System.out.println("==================================================");
+		System.out.println("=========G5Android Bluetooth AutoTest v0.0.1======");
+		System.out.println("=========       2016-12-30       =================");
+		System.out.println("=========        DesaySV         =================");
+		System.out.println("==================================================");
+		Log.i("BLUETOOTHAUTOTEST","=========G5Android Bluetooth AutoTest v0.0.1======");
+		Log.i("BLUETOOTHAUTOTEST","=========       2016-12-30       =================");
+		Log.i("BLUETOOTHAUTOTEST","=========        DesaySV         =================");
+		Log.i("BLUETOOTHAUTOTEST","==================================================");
+	}
+	
+}

@@ -1,0 +1,4 @@
+AppiumJava.disabledListeners=true
+AppiumJava.outdir=/test-output
+AppiumJavaxmlTemplateFile=org.uncommons.reportng.HTMLReporter
+eclipse.preferences.version=1

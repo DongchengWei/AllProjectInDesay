@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 2 elements to &apos;StartAdb/src/com.utils&apos;&#x0D;&#x0A;- Original project: &apos;PowerControl&apos;&#x0D;&#x0A;- Destination element: &apos;StartAdb/src/com.utils&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     com.utils.SerialPortUtil.java&#x0D;&#x0A;     com.utils.PropUtil.java" description="Copy compilation units" destination="=StartAdb/src&lt;com.utils" element1="/src&lt;com.utils{SerialPortUtil.java" element2="/src&lt;com.utils{PropUtil.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1498093797553" units="2" version="1.0"/>
+</session>

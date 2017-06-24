@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Test"
+           tests="3"
+           failures="0"
+           errors="0"
+           skipped="3"
+           time="0.000">
+  <properties />
+  
+            <testcase name="afterClass" time="0.0" classname="com.bt.music.IntoBtMusic">
+          <skipped />
+    </testcase>
+            <testcase name="initDriver" time="0.0" classname="com.bt.music.IntoBtMusic">
+          <skipped />
+    </testcase>
+            <testcase name="intoMediaPage" time="0.0" classname="com.bt.music.IntoBtMusic">
+          <skipped />
+    </testcase>
+  
+  
+</testsuite>

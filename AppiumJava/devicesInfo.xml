@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<device name="devicesList">
+    <deviceId id="0">
+        <deviceName>2e6408f0344c0122</deviceName>
+        <appiumPort>6666</appiumPort>
+        <logName>2e6408f0344c0122_170423093400.log</logName>
+    </deviceId>
+</device>

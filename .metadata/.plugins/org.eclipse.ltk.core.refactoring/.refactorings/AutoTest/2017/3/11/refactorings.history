@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.pageutil.WifiPage&apos; to &apos;WifiTabPage&apos;&#x0D;&#x0A;- Original project: &apos;AutoTest&apos;&#x0D;&#x0A;- Original element: &apos;com.pageutil.WifiPage&apos;&#x0D;&#x0A;- Renamed element: &apos;com.pageutil.WifiTabPage&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;WifiPage&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;com.pageutil{WifiPage.java[WifiPage" matchStrategy="1" name="WifiTabPage" qualified="false" references="true" similarDeclarations="false" stamp="1489652975644" textual="false" version="1.0"/>
+</session>

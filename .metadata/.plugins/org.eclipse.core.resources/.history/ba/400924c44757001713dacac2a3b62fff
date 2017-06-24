@@ -1,0 +1,31 @@
+/**
+ * @Author：Tonsen
+ * @Email ：Dongcheng.Wei@desay-svautomotive.com
+ * @Date  ：2017-06-22
+ */
+package com.update;
+
+import com.android.uiautomator.testrunner.UiAutomatorTestCase;
+
+/** 
+* @author 作者 E-mail: Dongcheng.Wei@desay-svautomotive.com
+* @version 创建时间：2017年6月22日 下午8:38:30 
+* 类说明 :
+*/
+/**
+ * @author uidq0460
+ *
+ */
+public class UpdateVersion extends UiAutomatorTestCase {
+
+	/**
+	 * 
+	 * @param args
+	 * @Date 2017-06-22
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

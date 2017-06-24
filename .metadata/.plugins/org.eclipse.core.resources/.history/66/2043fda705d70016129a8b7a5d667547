@@ -1,0 +1,57 @@
+package com.simpletest;
+
+import java.io.IOException;
+
+import com.android.uiautomator.core.UiObject;
+import com.android.uiautomator.core.UiObjectNotFoundException;
+import com.android.uiautomator.core.UiScrollable;
+import com.android.uiautomator.core.UiSelector;
+import com.android.uiautomator.testrunner.UiAutomatorTestCase;
+import com.utils.PrintUtil;
+import com.utils.RunTestCase;
+
+import android.os.RemoteException;
+
+public class SimpleTest extends UiAutomatorTestCase {
+	
+	String BLUETOOTH_DEVICE_NAME = "testphone";			//待测手机蓝牙名字
+	//调用自动运行cmd命令
+	public static void main(String[] args) throws IOException {  
+		 
+		RunTestCase runTestCase=new RunTestCase("SimpleTest",  
+				 "com.simpletest.SimpleTest", "", "2");  
+		runTestCase.setDebug(false);  
+		runTestCase.runUiautomator(); 
+	} 
+	
+	public void testDemo() {
+		
+		try {
+			getUiDevice().wakeUp();
+			getUiDevice().pressHome();
+			try {
+				//进入设置界面
+				new UiObject(new UiSelector().
+						resourceId("com.android.launcher:id/ts_home_button_item_settings_id")).clickAndWaitForNewWindow(2000);
+				new UiObject(new UiSelector().resourceId("com.android.settings:id/ts_tab_bluetooth_id")).click();//进如蓝牙
+		        //查找可用设备中是否存在目标设备,并点击设备进行匹配
+	        	UiScrollable deviceList = new UiScrollable( new UiSelector().
+	        			resourceId("com.android.settings:id/ts_bluetooth_dev_list"));
+				UiObject targetDevice = deviceList.getChildByText(new UiSelector().className("android.widget.TextView"), BLUETOOTH_DEVICE_NAME);
+				targetDevice.waitForExists(60000);
+				if (targetDevice.exists()) {
+					PrintUtil.logAndPrint(BLUETOOTH_DEVICE_NAME + " Exists in device list");
+					targetDevice.click();//点击配对
+					sleep(10000);//等待对方设备确认连接，这个延时必须要
+				}else {
+					PrintUtil.logAndPrint(BLUETOOTH_DEVICE_NAME + " not exists in device list,Plz check later");
+				}
+			} catch (UiObjectNotFoundException e) {
+				PrintUtil.logAndPrint("UiObject not found:settings");
+			}
+		} catch (RemoteException e) {
+			System.out.println("RemoteException");
+		}
+	}
+
+}

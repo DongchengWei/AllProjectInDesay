@@ -1,0 +1,201 @@
+/**
+ * @Author：Tonsen
+ * @Email ：Dongcheng.Wei@desay-svautomotive.com
+ * @Date  ：2017-06-17
+ */
+package com.media;
+
+import com.android.uiautomator.core.UiDevice;
+import com.android.uiautomator.core.UiObjectNotFoundException;
+import com.android.uiautomator.testrunner.UiAutomatorTestCase;
+import com.otherutils.Utils;
+import com.pageutil.HomePage;
+import com.pageutil.MediaPage;
+import com.runutils.RunTestCase;
+
+import android.os.Bundle;
+import android.os.RemoteException;
+import android.os.SystemClock;
+
+/** 
+* @author 作者 E-mail: Dongcheng.Wei@desay-svautomotive.com
+* @version 创建时间：2017年6月17日 下午1:25:01 
+* 类说明 :
+*/
+/**
+ * @author uidq0460
+ * 播放视频后，一直下一曲
+ * 命令：uiautomator runtest AutoTest.jar -c com.media.NextTest &
+ * 参数设置： -e Source USB1 -e MediaType VIDEO -e   TestTimes 100    -e StayTime 10
+ * 			 第一音源FM，                             第二音源BT          测试次数100            停留时间10秒
+ */
+public class NextTest extends UiAutomatorTestCase {
+	
+	public static void main(String[] args) {
+		RunTestCase runTestCase=new RunTestCase("AutoTest",  
+				 "com.media.NextTest", "", "3");  
+		runTestCase.setDebug(false);  
+		runTestCase.runUiautomator(); 
+	}
+	
+	//输出版本信息
+	public static void CaseInfo(){
+		System.out.println("==================================================");
+		System.out.println("=========G5Android AutoTest v0.0.1================");
+		System.out.println("============case:Video next  test=================");
+		System.out.println("==================2017-06-07======================");
+	}
+	
+	public void testNextTest(){
+		try{
+			CaseInfo();
+			getUiDevice().wakeUp();
+			Utils.stopRunningWatcher();
+			int sourceSel = 0;
+			int mediaType = 0;
+			
+			String sourceSelectStr = "";
+			Bundle testBundle = getParams();//获取参数
+			if (testBundle.getString("Source") != null) {
+				sourceSelectStr = testBundle.getString("Source");
+			} else {
+				sourceSelectStr = "USB1";
+			}
+			Utils.logPrint("source = " + sourceSelectStr);
+			if (sourceSelectStr.equals("LOCAL")) {
+				sourceSel = MediaPage.LOCALSOURCE;
+			} else if (sourceSelectStr.equals("USB1")) {
+				sourceSel = MediaPage.USB1SOURCE;
+			} else if (sourceSelectStr.equals("USB2")) {
+				sourceSel = MediaPage.USB2SOURCE;
+			} else if (sourceSelectStr.equals("SD")) {
+				sourceSel = MediaPage.SDSOURCE;
+			}
+			
+			String mediaTypeStr = "";
+			if (testBundle.getString("MediaType") != null) {
+				mediaTypeStr = testBundle.getString("MediaType");
+			} else {
+				mediaTypeStr = "VIDEO";
+			}
+			Utils.logPrint("mediaTypeStr = " + mediaTypeStr);
+			if (mediaTypeStr.equals("VIDEO")) {
+				mediaType = MediaPage.TYPEVIDEO;
+			} else if (mediaTypeStr.equals("MUSIC")) {
+				mediaType = MediaPage.TYPEMUSIC;
+			} else if (mediaTypeStr.equals("IMAGE")) {
+				mediaType = MediaPage.TYPEIMAGE;
+			}
+			
+			
+			//获取测试次数
+			long testTimes = 0;
+			String resultStr = testBundle.getString("TestTimes");
+			if (resultStr != null) {
+				testTimes = Long.parseLong(resultStr);
+			} else {
+				testTimes = 10;
+			}
+			Utils.logPrint("testTimes = " + testTimes);
+			
+			//间隔时间
+			long stayTimeL = 0;
+			String stayTimeStr = testBundle.getString("StayTime");
+			if (stayTimeStr != null) {
+				stayTimeL = Long.parseLong(stayTimeStr);
+			} else {
+				stayTimeL = 10;
+			}
+			Utils.logPrint("stayTimeL = " + stayTimeL);
+			
+			assertEquals(true, NextPressureTest(sourceSel, mediaType, testTimes, stayTimeL));
+			
+			UiDevice.getInstance().removeWatcher("stopRunning"); //移除监视器
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean NextPressureTest(int sourceInt, int type, long testTimes, long statyTimeLong) {
+		boolean isPass = false;
+		
+		HomePage homePage = new HomePage();
+		MediaPage mediaPage = new MediaPage();
+		
+		try {
+			homePage.goBackHome();
+			homePage.intoMultimedia();
+			if (mediaPage.intoSourceSelect()) {
+				if (mediaPage.selectSource(sourceInt)) {
+					if (mediaPage.selectSourceType(type)) {
+						boolean keepTesting = true;
+						int testCounter = 0;
+						int testPassCounter = 0;
+						if (type == MediaPage.TYPEVIDEO) {//视频
+							while(keepTesting){
+								testCounter ++;
+								
+								if (mediaPage.clickNextVideoBtn()) {
+									testPassCounter ++;
+									Utils.logForResult("Test Pass:" + testPassCounter + " times,Total Test:" + testCounter);
+									SystemClock.sleep(statyTimeLong * 1000);
+								} 
+								if (testCounter == testTimes) {
+									keepTesting = false;
+									if (testPassCounter == testCounter) {
+										isPass = true;
+										Utils.logForResult("Test pass:" + testPassCounter);
+									}else {
+										Utils.logForResult("Test fail:" + (testCounter - testPassCounter) + " times in " + testCounter);
+									}
+								}
+							}
+						} else if (type == MediaPage.TYPEMUSIC) {
+							while(keepTesting){
+								testCounter ++;
+								
+								if (mediaPage.clickNextMusicPot()) {
+									testPassCounter ++;
+									Utils.logForResult("Test Pass:" + testPassCounter + " times,Total Test:" + testCounter);
+									SystemClock.sleep(statyTimeLong * 1000);
+								} 
+								if (testCounter == testTimes) {
+									keepTesting = false;
+									if (testPassCounter == testCounter) {
+										isPass = true;
+										Utils.logForResult("Test pass:" + testPassCounter);
+									}else {
+										Utils.logForResult("Test fail:" + (testCounter - testPassCounter) + " times in " + testCounter);
+									}
+								}
+							}
+						} else if (type == MediaPage.TYPEIMAGE) {
+							while(keepTesting){
+								testCounter ++;
+								
+								if (mediaPage.clickNextImageBtn()) {
+									testPassCounter ++;
+									Utils.logForResult("Test Pass:" + testPassCounter + " times,Total Test:" + testCounter);
+									SystemClock.sleep(statyTimeLong * 1000);
+								} 
+								if (testCounter == testTimes) {
+									keepTesting = false;
+									if (testPassCounter == testCounter) {
+										isPass = true;
+										Utils.logForResult("Test pass:" + testPassCounter);
+									}else {
+										Utils.logForResult("Test fail:" + (testCounter - testPassCounter) + " times in " + testCounter);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		} catch (UiObjectNotFoundException e) {
+			Utils.logPrint("UiObjectNotFoundException:" + e.toString());
+		}
+		
+		return isPass;
+	}
+}
