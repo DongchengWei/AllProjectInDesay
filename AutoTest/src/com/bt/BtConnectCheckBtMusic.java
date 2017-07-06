@@ -62,7 +62,7 @@ public class BtConnectCheckBtMusic extends UiAutomatorTestCase {
 			if (resultStr != null) {
 				testTimes = Long.parseLong(resultStr);
 			} else {
-				testTimes = 10;
+				testTimes = 100;
 			}
 			Utils.logPrint("testTimes = " + testTimes);
 			

@@ -108,7 +108,7 @@ public class BtConnectCheckContactDisconnect extends UiAutomatorTestCase {
 						if (phonePage.intoContact()) {
 							Utils.logPrint("contact connect ok ...");
 							if (contactPage.contactsComeout(120000)) {
-								int contactCounter = contactPage.getConactsCounter();
+								int contactCounter = contactPage.getConactsCounter(20000);
 								Utils.logPrint("contacts Counter : " + contactCounter);
 								
 								homePage.goBackHome();

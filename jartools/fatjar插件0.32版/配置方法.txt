@@ -1,0 +1,5 @@
+将net.sf.fjep.fatjar_0.0.32.jar文件放在eclipse\plugins目录下，重启eclipse即可。
+在java项目上右键，下面会有一项Build Fat Jar，就表示插件配置成功了。
+如果没有该项，可以关闭Eclipce，然后将eclipse\configuration\org.eclipse.update目录内的platform.xml文件删除，再启动Eclipce。
+
+亲测0.32插件在Eclipse luna版本下好用。

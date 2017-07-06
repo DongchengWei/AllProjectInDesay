@@ -6,20 +6,20 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="connectObj == exists" key="selection"/>
+		<item value="音乐播放时车机端拨号" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="connectObj == exists"/>
-			<item value="System.out.println"/>
-			<item value="returnPackage"/>
-			<item value="selectPort"/>
-			<item value="窜口通讯测试"/>
-			<item value="combo"/>
-			<item value="isTestOneTimePass"/>
-			<item value="isTe"/>
+			<item value="音乐播放时车机端拨号"/>
+			<item value="蓝牙音乐播放时锁屏并解锁"/>
+			<item value="蓝牙音乐播放时关闭蓝牙开关"/>
+			<item value="蓝牙音乐暂停时锁屏并解锁"/>
+			<item value="切换蓝牙功能界面不打断蓝牙音乐暂停状态"/>
+			<item value="音乐播放时关闭蓝牙开关"/>
+			<item value="拨打特殊字符的电话号码"/>
+			<item value="TC_ST16081569109"/>
 		</list>
 		<list key="replacehistory">
 			<item value="keepTesting"/>
@@ -32,7 +32,7 @@
 		<item value="300" key="DIALOG_WIDTH"/>
 		<item value="1|微软雅黑|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|微软雅黑" key="DIALOG_FONT_NAME"/>
 		<item value="409" key="DIALOG_HEIGHT"/>
-		<item value="1210" key="DIALOG_X_ORIGIN"/>
-		<item value="210" key="DIALOG_Y_ORIGIN"/>
+		<item value="1207" key="DIALOG_X_ORIGIN"/>
+		<item value="176" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

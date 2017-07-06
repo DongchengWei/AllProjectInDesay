@@ -75,7 +75,7 @@ public class SourceSwitch extends UiAutomatorTestCase {
 			if (testBundle.getString("SecondSource") != null) {
 				secondSourceStr = testBundle.getString("SecondSource");
 			} else {
-				secondSourceStr = "IPOD";
+				secondSourceStr = "SD";
 			}
 			Utils.logPrint("secondSourceStr = " + secondSourceStr);
 			

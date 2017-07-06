@@ -4,7 +4,7 @@
 	<item value="false" key="TypeHierarchyViewPart.qualifiednames"/>
 	<item value="3" key="TypeHierarchyViewPart.orientation"/>
 	<item value="false" key="TypeHierarchyViewPart.linkeditors"/>
-	<item value="D:\android\myworkspace\StartAdb" key="org.eclipse.jdt.ui.lastextjar"/>
+	<item value="D:\android\myworkspace\jartools\junit" key="org.eclipse.jdt.ui.lastextjar"/>
 	<item value="2" key="TypeHierarchyViewPart.hierarchyview"/>
 	<item value="false" key="delegateUpdating"/>
 	<section name="org.eclipse.ltk.ui.refactoring.settings">
@@ -100,7 +100,7 @@
 	</section>
 	<section name="JarPackageWizard">
 		<item value="false" key="JarPackageWizardPage.INCLUDE_DIRECTORY_ENTRIES"/>
-		<item value="/StartAdb/MANIFEST.MF" key="JarManifestWizardPage.MANIFEST_LOCATION"/>
+		<item value="/XmlTools/MANIFEST.MF" key="JarManifestWizardPage.MANIFEST_LOCATION"/>
 		<item value="false" key="JarManifestWizardPage.SEAL_JAR"/>
 		<item value="false" key="JarPackageWizardPage.COMPRESS"/>
 		<item value="false" key="JarManifestWizardPage.REUSE_MANIFEST"/>
@@ -118,6 +118,9 @@
 		<item value="false" key="JarManifestWizardPage.SAVE_MANIFEST"/>
 		<item value="false" key="JarPackageWizardPage.EXPORT_OUTPUT_FOLDER"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="XmlTools\XmlTools.jar"/>
+			<item value="XmlTools/XmlTools.jar"/>
+			<item value="PowerControl/IT6831Remote.jar"/>
 			<item value="StartAdb\StartAdb.jar"/>
 			<item value="StartAdb/StartAdb.jar"/>
 			<item value="RebootWait\RebootWait.jar"/>

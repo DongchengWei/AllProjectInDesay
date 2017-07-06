@@ -259,7 +259,7 @@ public class PowerCtrl {
 				String comNameStr = comSelCombo.getText();
 				portUtil.close();
 				SerialPortUtil.selectPort(comNameStr);
-				PropUtil.setProperties(propFilePath, "comSaveStr", comNameStr, true);
+				PropUtil.setProperties(propFilePath, "comSaveStr", comNameStr, false);
 				btnOutputOn.setEnabled(true);
 				btnOutputOff.setEnabled(true);
 			}
@@ -378,11 +378,11 @@ public class PowerCtrl {
 				stepTimeStr1 = textTime1.getText();
 				stepTimeStr2 = textTime2.getText();
 				repeatTimes = textTimes.getText();
-				PropUtil.setProperties(propFilePath, "stepVoltStr1", stepVoltStr1, true);
-				PropUtil.setProperties(propFilePath, "stepVoltStr2", stepVoltStr2, true);
-				PropUtil.setProperties(propFilePath, "stepTimeStr1", stepTimeStr1, true);
-				PropUtil.setProperties(propFilePath, "stepTimeStr2", stepTimeStr2, true);
-				PropUtil.setProperties(propFilePath, "repeatTimes", repeatTimes, true);
+				PropUtil.setProperties(propFilePath, "stepVoltStr1", stepVoltStr1, false);
+				PropUtil.setProperties(propFilePath, "stepVoltStr2", stepVoltStr2, false);
+				PropUtil.setProperties(propFilePath, "stepTimeStr1", stepTimeStr1, false);
+				PropUtil.setProperties(propFilePath, "stepTimeStr2", stepTimeStr2, false);
+				PropUtil.setProperties(propFilePath, "repeatTimes", repeatTimes, false);
 				btnStart.setEnabled(false);
 				new Thread(new Runnable() {
 					@Override
@@ -452,7 +452,7 @@ public class PowerCtrl {
 			public void widgetSelected(SelectionEvent e) {
 				if (btnStillRepeat.getSelection()) {
 					repeatMode = "still";
-					PropUtil.setProperties(propFilePath, "repeatMode", repeatMode, true);
+					PropUtil.setProperties(propFilePath, "repeatMode", repeatMode, false);
 				}
 				
 			}
@@ -466,7 +466,7 @@ public class PowerCtrl {
 			public void widgetSelected(SelectionEvent e) {
 				if (btnRepeatTimes.getSelection()) {
 					repeatMode = "counter";
-					PropUtil.setProperties(propFilePath, "repeatMode", repeatMode, true);
+					PropUtil.setProperties(propFilePath, "repeatMode", repeatMode, false);
 				}
 				
 			}
@@ -643,8 +643,8 @@ public class PowerCtrl {
 			public void widgetSelected(SelectionEvent e) {
 				outputVoltageStr = textOutputVolt.getText();
 				outputCurrentStr = textOutputCurr.getText();
-				PropUtil.setProperties(propFilePath, "outputVoltageStr", outputVoltageStr, true);
-				PropUtil.setProperties(propFilePath, "outputCurrentStr", outputCurrentStr, true);
+				PropUtil.setProperties(propFilePath, "outputVoltageStr", outputVoltageStr, false);
+				PropUtil.setProperties(propFilePath, "outputCurrentStr", outputCurrentStr, false);
 				It6831.setOutputVoltage(outputVoltageStr);
 				It6831.setOutputCurrent(outputCurrentStr);
 			}

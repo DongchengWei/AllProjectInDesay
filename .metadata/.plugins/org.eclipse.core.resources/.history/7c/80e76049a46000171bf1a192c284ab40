@@ -1,0 +1,1323 @@
+Updated file D:\android\myworkspace\AutoTest\build.xml
+Buildfile: D:\android\myworkspace\AutoTest\build.xml
+
+-check-env:
+ [checkenv] Android SDK Tools Revision 23.0.2
+ [checkenv] Installed at D:\android\android-sdk-windows
+
+-build-setup:
+[getbuildtools] Using latest Build Tools: 19.1.0
+     [echo] Resolving Build Target for AutoTest...
+[getuitarget] Project Target:   Android 5.1.1
+[getuitarget] API level:        22
+     [echo] ----------
+     [echo] Creating output directories if needed...
+
+-pre-compile:
+
+compile:
+
+-post-compile:
+
+-dex:
+      [dex] input: D:\android\myworkspace\AutoTest\bin\classes
+      [dex] Found Deleted Target File
+      [dex] Converting compiled files and external libraries into D:\android\myworkspace\AutoTest\bin\classes.dex...
+
+-post-dex:
+
+-jar:
+      [jar] Building jar: D:\android\myworkspace\AutoTest\bin\AutoTest.jar
+
+-post-jar:
+
+build:
+
+BUILD SUCCESSFUL
+Total time: 3 seconds
+* daemon not running. starting it now on port 5037 *
+* daemon started successfully *
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+com.bt.music.MusicTest:
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testBtChangeToShuffleMode
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=1
+
+INSTRUMENTATION_STATUS_CODE: 1
+
+=================Bt Music cases===================
+
+=========goBackHome()
+
+=========setUp():wakup-UiWatcher-backhome
+
+=========TC_ST16081568980,TC_ST16081568983,TC_ST16081568984蓝牙音乐播放时车机端改变播放模式
+
+=========intoMultimedia()
+
+=========intoBtMusic()
+
+=========changePlayModeTo()
+
+=========changeToShuffleMode:com.android.uiautomator.core.UiObjectNotFoundException: UiSelector[RESOURCE_ID=com.thundersoft.mediaplayer:id/iv_ts_media_btn_play_mode]
+
+=========tearDown():stop UiWatcher
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+Failure in testBtChangeToShuffleMode:
+
+junit.framework.AssertionFailedError: 蓝牙音乐播放时车机端改变播放模式： expected:<true> but was:<false>
+
+	at com.bt.music.MusicTest.testBtChangeToShuffleMode(MusicTest.java:247)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.start(UiAutomatorTestRunner.java:160)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.run(UiAutomatorTestRunner.java:96)
+
+	at com.android.commands.uiautomator.RunTestCommand.run(RunTestCommand.java:91)
+
+	at com.android.commands.uiautomator.Launcher.main(Launcher.java:83)
+
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:249)
+
+
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testBtChangeToShuffleMode
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: stack=junit.framework.AssertionFailedError: 蓝牙音乐播放时车机端改变播放模式： expected:<true> but was:<false>
+
+	at com.bt.music.MusicTest.testBtChangeToShuffleMode(MusicTest.java:247)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.start(UiAutomatorTestRunner.java:160)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.run(UiAutomatorTestRunner.java:96)
+
+	at com.android.commands.uiautomator.RunTestCommand.run(RunTestCommand.java:91)
+
+	at com.android.commands.uiautomator.Launcher.main(Launcher.java:83)
+
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:249)
+
+
+
+INSTRUMENTATION_STATUS: current=1
+
+INSTRUMENTATION_STATUS_CODE: -2
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testBtDialAbnormalNumber
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=2
+
+INSTRUMENTATION_STATUS_CODE: 1
+
+=================Bt Music cases===================
+
+=========goBackHome()
+
+=========setUp():wakup-UiWatcher-backhome
+
+=========TC_ST16081569834:拨打特殊字符的电话号码
+
+=========TC_ST16081569835:拨打特殊字符的电话号码
+
+=========TC_ST16081569836:拨打特殊字符的电话号码
+
+=========intoMultimedia()
+
+=========intoFmAmPage()
+
+=========goBackHome()
+
+=========intoPhone()
+
+=========intoDialPad()
+
+=========dialAbnormalNumber()
+
+=========inputNumbers()
+
+=========getInputNumbers()
+
+=========inputText:*#10086
+
+=========dialStart()
+
+=========dialAbnormalNumber()
+
+=========inputNumbers()
+
+=========getInputNumbers()
+
+=========inputText:*#
+
+=========dialStart()
+
+=========tearDown():stop UiWatcher
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+Failure in testBtDialAbnormalNumber:
+
+junit.framework.AssertionFailedError: TC_ST16081569834,TC_ST16081569835,TC_ST16081569836:拨打特殊字符的电话号码 expected:<true> but was:<false>
+
+	at com.bt.music.MusicTest.testBtDialAbnormalNumber(MusicTest.java:143)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.start(UiAutomatorTestRunner.java:160)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.run(UiAutomatorTestRunner.java:96)
+
+	at com.android.commands.uiautomator.RunTestCommand.run(RunTestCommand.java:91)
+
+	at com.android.commands.uiautomator.Launcher.main(Launcher.java:83)
+
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:249)
+
+
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testBtDialAbnormalNumber
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: stack=junit.framework.AssertionFailedError: TC_ST16081569834,TC_ST16081569835,TC_ST16081569836:拨打特殊字符的电话号码 expected:<true> but was:<false>
+
+	at com.bt.music.MusicTest.testBtDialAbnormalNumber(MusicTest.java:143)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.start(UiAutomatorTestRunner.java:160)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.run(UiAutomatorTestRunner.java:96)
+
+	at com.android.commands.uiautomator.RunTestCommand.run(RunTestCommand.java:91)
+
+	at com.android.commands.uiautomator.Launcher.main(Launcher.java:83)
+
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:249)
+
+
+
+INSTRUMENTATION_STATUS: current=2
+
+INSTRUMENTATION_STATUS_CODE: -2
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testBtDialLongAndShortNumber
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=3
+
+INSTRUMENTATION_STATUS_CODE: 1
+
+=================Bt Music cases===================
+
+=========goBackHome()
+
+=========setUp():wakup-UiWatcher-backhome
+
+=========拨打特殊字符的电话号码
+
+=========intoMultimedia()
+
+=========intoFmAmPage()
+
+=========goBackHome()
+
+=========intoPhone()
+
+=========intoDialPad()
+
+=========inputNumbers()
+
+=========dialStart()
+
+=========intoDialPad()
+
+=========dialAbnormalNumber()
+
+=========inputNumbers()
+
+=========getInputNumbers()
+
+=========inputText:123
+
+=========dialStart()
+
+=========dialAbnormalNumber()
+
+=========inputNumbers()
+
+=========getInputNumbers()
+
+=========inputText:1234567
+
+=========dialStart()
+
+=========dialAbnormalNumber()
+
+=========inputNumbers()
+
+=========getInputNumbers()
+
+=========inputText:12345678901
+
+=========dialStart()
+
+=========inputNumbers()
+
+=========dialStart()
+
+=========intoDialPad()
+
+=========inputNumbers()
+
+=========dialStart()
+
+=========tearDown():stop UiWatcher
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=.
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testBtDialLongAndShortNumber
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=3
+
+INSTRUMENTATION_STATUS_CODE: 0
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testBtMusicNextPrevious
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=4
+
+INSTRUMENTATION_STATUS_CODE: 1
+
+=================Bt Music cases===================
+
+=========goBackHome()
+
+=========setUp():wakup-UiWatcher-backhome
+
+=========TC_ST16081568969,TC_ST16081568970：蓝牙音乐下一曲上一曲
+
+=========intoMultimedia()
+
+=========intoBtMusic()
+
+=========nextMusic()
+
+=========musicTitleStr:在梦中
+
+=========nextStr:真心话
+
+=========previousMusic()
+
+=========before：6
+
+=========after pre time：1
+
+=========btMusicNextPrevious pass
+
+=========tearDown():stop UiWatcher
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=.
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testBtMusicNextPrevious
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=4
+
+INSTRUMENTATION_STATUS_CODE: 0
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testBtMusicPausePlay
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=5
+
+INSTRUMENTATION_STATUS_CODE: 1
+
+=================Bt Music cases===================
+
+=========goBackHome()
+
+=========setUp():wakup-UiWatcher-backhome
+
+=========TC_ST16081568965,TC_ST16081568967：蓝牙音乐暂停/播放
+
+=========intoMultimedia()
+
+=========intoBtMusic()
+
+=========musicDoPlay()
+
+=========musicDoPause()
+
+=========musicDoPlay()
+
+=========btMusicPausePlay pass
+
+=========tearDown():stop UiWatcher
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=.
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testBtMusicPausePlay
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=5
+
+INSTRUMENTATION_STATUS_CODE: 0
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testChangeLanguageWhenBtPlaying
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=6
+
+INSTRUMENTATION_STATUS_CODE: 1
+
+=================Bt Music cases===================
+
+=========goBackHome()
+
+=========setUp():wakup-UiWatcher-backhome
+
+=========TC_ST17031090857：蓝牙音乐播放时改变系统语言
+
+=========intoMultimedia()
+
+=========intoBtMusic()
+
+=========musicDoPlay()
+
+=========goBackHome()
+
+=========intoSettings()
+
+=========intoDisplayTab()
+
+=========intoLanguageSetting()
+
+=========seleteEnglish()
+
+=========clickMedia()
+
+=========intoLanguageSetting()
+
+=========seleteChinese()
+
+=========changeLanguageWhenBtPlaying pass
+
+=========tearDown():stop UiWatcher
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=.
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testChangeLanguageWhenBtPlaying
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=6
+
+INSTRUMENTATION_STATUS_CODE: 0
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testCheckID3
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=7
+
+INSTRUMENTATION_STATUS_CODE: 1
+
+=================Bt Music cases===================
+
+=========goBackHome()
+
+=========setUp():wakup-UiWatcher-backhome
+
+=========TC_ST16081568964：蓝牙音乐检查ID3
+
+=========intoMultimedia()
+
+=========intoBtMusic()
+
+=========歌曲名：真心话
+
+=========歌手名：呼吸BreatheRadio
+
+=========专辑名：聆听你的呼吸
+
+=========歌曲总时长：03:40
+
+=========checkID3BtMusic pass
+
+=========tearDown():stop UiWatcher
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=.
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testCheckID3
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=7
+
+INSTRUMENTATION_STATUS_CODE: 0
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testDialWhileBtMusicPlaying
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=8
+
+INSTRUMENTATION_STATUS_CODE: 1
+
+=================Bt Music cases===================
+
+=========goBackHome()
+
+=========setUp():wakup-UiWatcher-backhome
+
+=========TC_ST16081569096:蓝牙音乐：音乐播放时车机端拨号
+
+=========intoMultimedia()
+
+=========intoBtMusic()
+
+=========musicDoPlay()
+
+=========intoDialPad()
+
+=========dialAndEndCallAfterOncall()
+
+=========inputNumbers()
+
+=========getInputNumbers()
+
+=========inputText:10086
+
+=========dialStart()
+
+=========isOncall()
+
+=========tearDown():stop UiWatcher
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+Failure in testDialWhileBtMusicPlaying:
+
+junit.framework.AssertionFailedError: TC_ST16081569096:蓝牙音乐：音乐播放时车机端拨号 expected:<true> but was:<false>
+
+	at com.bt.music.MusicTest.testDialWhileBtMusicPlaying(MusicTest.java:179)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.start(UiAutomatorTestRunner.java:160)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.run(UiAutomatorTestRunner.java:96)
+
+	at com.android.commands.uiautomator.RunTestCommand.run(RunTestCommand.java:91)
+
+	at com.android.commands.uiautomator.Launcher.main(Launcher.java:83)
+
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:249)
+
+
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testDialWhileBtMusicPlaying
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: stack=junit.framework.AssertionFailedError: TC_ST16081569096:蓝牙音乐：音乐播放时车机端拨号 expected:<true> but was:<false>
+
+	at com.bt.music.MusicTest.testDialWhileBtMusicPlaying(MusicTest.java:179)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.start(UiAutomatorTestRunner.java:160)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.run(UiAutomatorTestRunner.java:96)
+
+	at com.android.commands.uiautomator.RunTestCommand.run(RunTestCommand.java:91)
+
+	at com.android.commands.uiautomator.Launcher.main(Launcher.java:83)
+
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:249)
+
+
+
+INSTRUMENTATION_STATUS: current=8
+
+INSTRUMENTATION_STATUS_CODE: -2
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testIntoBtMusicPlay
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=9
+
+INSTRUMENTATION_STATUS_CODE: 1
+
+=================Bt Music cases===================
+
+=========goBackHome()
+
+=========setUp():wakup-UiWatcher-backhome
+
+=========TC_ST16081568963,TC_ST16081569070:启动蓝牙音乐的两种方式。
+
+=========intoMultimedia()
+
+=========intoFmAmPage()
+
+=========nextSource()
+
+=========previousSource()
+
+=========intoBtMusic()
+
+=========intoMutimedia pass
+
+=========tearDown():stop UiWatcher
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=.
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testIntoBtMusicPlay
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=9
+
+INSTRUMENTATION_STATUS_CODE: 0
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testLockScreenWhenBtPausing
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=10
+
+INSTRUMENTATION_STATUS_CODE: 1
+
+=================Bt Music cases===================
+
+=========goBackHome()
+
+=========setUp():wakup-UiWatcher-backhome
+
+=========TC_ST16081569077：蓝牙音乐暂停时锁屏
+
+=========intoMultimedia()
+
+=========intoBtMusic()
+
+=========musicDoPlay()
+
+=========lockScreenWhenBtPlaying pass
+
+=========tearDown():stop UiWatcher
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=.
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testLockScreenWhenBtPausing
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=10
+
+INSTRUMENTATION_STATUS_CODE: 0
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testLockScreenWhenBtPlaying
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=11
+
+INSTRUMENTATION_STATUS_CODE: 1
+
+=================Bt Music cases===================
+
+=========goBackHome()
+
+=========setUp():wakup-UiWatcher-backhome
+
+=========TC_ST16081569076：蓝牙音乐播放时锁屏
+
+=========intoMultimedia()
+
+=========intoBtMusic()
+
+=========musicDoPlay()
+
+=========lockScreenWhenBtPlaying pass
+
+=========tearDown():stop UiWatcher
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=.
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testLockScreenWhenBtPlaying
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=11
+
+INSTRUMENTATION_STATUS_CODE: 0
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testRvcBtMusicKeepPause
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=12
+
+INSTRUMENTATION_STATUS_CODE: 1
+
+=================Bt Music cases===================
+
+=========goBackHome()
+
+=========setUp():wakup-UiWatcher-backhome
+
+=========TC_ST16081569048:蓝牙音乐：切换倒车不打断蓝牙音乐暂停状态
+
+=========intoMultimedia()
+
+=========intoBtMusic()
+
+=========musicDoPause()
+
+------execute command:  vehicle.fakervcdctl on
+
+------execute command:  vehicle.fakervcdctl off
+
+=========tearDown():stop UiWatcher
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+Failure in testRvcBtMusicKeepPause:
+
+junit.framework.AssertionFailedError: 切换倒车不打断蓝牙音乐暂停状态： expected:<true> but was:<false>
+
+	at com.bt.music.MusicTest.testRvcBtMusicKeepPause(MusicTest.java:214)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.start(UiAutomatorTestRunner.java:160)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.run(UiAutomatorTestRunner.java:96)
+
+	at com.android.commands.uiautomator.RunTestCommand.run(RunTestCommand.java:91)
+
+	at com.android.commands.uiautomator.Launcher.main(Launcher.java:83)
+
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:249)
+
+
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testRvcBtMusicKeepPause
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: stack=junit.framework.AssertionFailedError: 切换倒车不打断蓝牙音乐暂停状态： expected:<true> but was:<false>
+
+	at com.bt.music.MusicTest.testRvcBtMusicKeepPause(MusicTest.java:214)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.start(UiAutomatorTestRunner.java:160)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.run(UiAutomatorTestRunner.java:96)
+
+	at com.android.commands.uiautomator.RunTestCommand.run(RunTestCommand.java:91)
+
+	at com.android.commands.uiautomator.Launcher.main(Launcher.java:83)
+
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:249)
+
+
+
+INSTRUMENTATION_STATUS: current=12
+
+INSTRUMENTATION_STATUS_CODE: -2
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testSmsVoiceBtMusicPlaying
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=13
+
+INSTRUMENTATION_STATUS_CODE: 1
+
+=================Bt Music cases===================
+
+=========goBackHome()
+
+=========setUp():wakup-UiWatcher-backhome
+
+=========TC_ST16081569088:蓝牙音乐：音乐播放时播报短信
+
+=========intoMultimedia()
+
+=========intoBtMusic()
+
+=========musicDoPlay()
+
+=========intoMessaging()
+
+=========clickMedia()
+
+=========smsVoiceBtMusicPlaying() pass
+
+=========tearDown():stop UiWatcher
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=.
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testSmsVoiceBtMusicPlaying
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=13
+
+INSTRUMENTATION_STATUS_CODE: 0
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testSwitchBtFunctionCheckMusicPause
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=14
+
+INSTRUMENTATION_STATUS_CODE: 1
+
+=================Bt Music cases===================
+
+=========goBackHome()
+
+=========setUp():wakup-UiWatcher-backhome
+
+=========TC_ST16081569047:蓝牙音乐：切换蓝牙功能界面不打断蓝牙音乐暂停状态
+
+=========intoMultimedia()
+
+=========intoBtMusic()
+
+=========tearDown():stop UiWatcher
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+Failure in testSwitchBtFunctionCheckMusicPause:
+
+junit.framework.AssertionFailedError: 切换蓝牙功能界面不打断蓝牙音乐暂停状态： expected:<true> but was:<false>
+
+	at com.bt.music.MusicTest.testSwitchBtFunctionCheckMusicPause(MusicTest.java:224)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.start(UiAutomatorTestRunner.java:160)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.run(UiAutomatorTestRunner.java:96)
+
+	at com.android.commands.uiautomator.RunTestCommand.run(RunTestCommand.java:91)
+
+	at com.android.commands.uiautomator.Launcher.main(Launcher.java:83)
+
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:249)
+
+
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testSwitchBtFunctionCheckMusicPause
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: stack=junit.framework.AssertionFailedError: 切换蓝牙功能界面不打断蓝牙音乐暂停状态： expected:<true> but was:<false>
+
+	at com.bt.music.MusicTest.testSwitchBtFunctionCheckMusicPause(MusicTest.java:224)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.start(UiAutomatorTestRunner.java:160)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.run(UiAutomatorTestRunner.java:96)
+
+	at com.android.commands.uiautomator.RunTestCommand.run(RunTestCommand.java:91)
+
+	at com.android.commands.uiautomator.Launcher.main(Launcher.java:83)
+
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:249)
+
+
+
+INSTRUMENTATION_STATUS: current=14
+
+INSTRUMENTATION_STATUS_CODE: -2
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testSwitchBtFunctionCheckMusicPlay
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=15
+
+INSTRUMENTATION_STATUS_CODE: 1
+
+=================Bt Music cases===================
+
+=========goBackHome()
+
+=========setUp():wakup-UiWatcher-backhome
+
+=========TC_ST16081569078:蓝牙音乐：音乐播放时切换蓝牙功能界面
+
+=========intoMultimedia()
+
+=========intoBtMusic()
+
+=========musicDoPlay()
+
+=========goBackHome()
+
+=========intoPhone()
+
+=========intoRecents()
+
+=========intoDialPad()
+
+=========intoContact()
+
+=========intoMessaging()
+
+=========clickMedia()
+
+=========switchBtFunctionCheckMusicPlay() pass
+
+=========tearDown():stop UiWatcher
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=.
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testSwitchBtFunctionCheckMusicPlay
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=15
+
+INSTRUMENTATION_STATUS_CODE: 0
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testSwitchFmBtMusicPauseInterrupt
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=16
+
+INSTRUMENTATION_STATUS_CODE: 1
+
+=================Bt Music cases===================
+
+=========goBackHome()
+
+=========setUp():wakup-UiWatcher-backhome
+
+=========TC_ST16081569046:蓝牙音乐：切换FM后返回蓝牙音乐打断音乐暂停状态
+
+=========intoMultimedia()
+
+=========intoBtMusic()
+
+=========musicDoPause()
+
+=========previousSource()
+
+=========nextSource()
+
+=========switchFmBtMusicPauseInterrupt() pass
+
+=========tearDown():stop UiWatcher
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=.
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testSwitchFmBtMusicPauseInterrupt
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=16
+
+INSTRUMENTATION_STATUS_CODE: 0
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testSwitchWifiWhenBtPlaying
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=17
+
+INSTRUMENTATION_STATUS_CODE: 1
+
+=================Bt Music cases===================
+
+=========goBackHome()
+
+=========setUp():wakup-UiWatcher-backhome
+
+=========TC_ST17031090858：蓝牙音乐播放时切换wifi开关
+
+=========intoMultimedia()
+
+=========intoBtMusic()
+
+=========musicDoPlay()
+
+=========goBackHome()
+
+=========intoSettings()
+
+=========intoWifiTab()
+
+=========clickMedia()
+
+=========goBackHome()
+
+=========intoSettings()
+
+=========intoWifiTab()
+
+=========clickMedia()
+
+=========switchWifiWhenBtPlaying pass
+
+=========tearDown():stop UiWatcher
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=.
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testSwitchWifiWhenBtPlaying
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=17
+
+INSTRUMENTATION_STATUS_CODE: 0
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testTurnOffBtWhileBtPlaying
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=18
+
+INSTRUMENTATION_STATUS_CODE: 1
+
+=================Bt Music cases===================
+
+=========goBackHome()
+
+=========setUp():wakup-UiWatcher-backhome
+
+=========TC_ST16081569109:蓝牙音乐：音乐播放时关闭蓝牙开关
+
+=========intoMultimedia()
+
+=========intoFmAmPage()
+
+=========intoBtMusic()
+
+=========musicDoPlay()
+
+=========goBackHome()
+
+=========intoSettings()
+
+=========intoBtTab()
+
+=========clickMedia()
+
+=========turnOffBtWhileBtPlaying() pass
+
+=========goBackHome()
+
+=========intoSettings()
+
+=========intoBtTab()
+
+=========tearDown():stop UiWatcher
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=.
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testTurnOffBtWhileBtPlaying
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=18
+
+INSTRUMENTATION_STATUS_CODE: 0
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testTurnOffOnBtWhileBtPlaying
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=19
+
+INSTRUMENTATION_STATUS_CODE: 1
+
+=================Bt Music cases===================
+
+=========goBackHome()
+
+=========setUp():wakup-UiWatcher-backhome
+
+=========TC_ST16081569110:蓝牙音乐：音乐播放时重启开关
+
+=========intoMultimedia()
+
+=========intoFmAmPage()
+
+=========intoBtMusic()
+
+=========musicDoPlay()
+
+=========goBackHome()
+
+=========intoSettings()
+
+=========intoBtTab()
+
+=========clickMedia()
+
+=========intoBtMusic()
+
+=========musicDoPause()
+
+=========musicDoPlay()
+
+=========nextMusic()
+
+=========musicTitleStr:느낌 아니까
+
+=========nextStr:DAY BY DAY
+
+=========turnOffOnBtWhileBtPlaying() pass
+
+=========tearDown():stop UiWatcher
+
+INSTRUMENTATION_STATUS: numtests=19
+
+INSTRUMENTATION_STATUS: stream=.
+
+INSTRUMENTATION_STATUS: id=UiAutomatorTestRunner
+
+INSTRUMENTATION_STATUS: test=testTurnOffOnBtWhileBtPlaying
+
+INSTRUMENTATION_STATUS: class=com.bt.music.MusicTest
+
+INSTRUMENTATION_STATUS: current=19
+
+INSTRUMENTATION_STATUS_CODE: 0
+
+INSTRUMENTATION_STATUS: stream=
+
+Test results for WatcherResultPrinter=.F.F......F....F..F.....
+
+Time: 748.975
+
+
+
+FAILURES!!!
+
+Tests run: 19,  Failures: 5,  Errors: 0
+
+
+
+
+
+INSTRUMENTATION_STATUS_CODE: -1
+

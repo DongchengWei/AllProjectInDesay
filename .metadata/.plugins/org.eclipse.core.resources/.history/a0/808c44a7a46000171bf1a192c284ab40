@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite failures="5" hostname="HZH4668C" name="UaLogs" tests="19" time="0.0" timestamp="2017-07-04T10:29:20">
+  <properties />
+  <testcase classname="com.bt.music.MusicTest" name="testBtChangeToShuffleMode" time="0.001">
+    <failure message="蓝牙音乐播放时车机端改变播放模式： expected:&lt;true&gt; but was:&lt;false&gt;" type="junit.framework.AssertionFailedError">
+
+	at com.bt.music.MusicTest.testBtChangeToShuffleMode(MusicTest.java:247)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.start(UiAutomatorTestRunner.java:160)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.run(UiAutomatorTestRunner.java:96)
+
+	at com.android.commands.uiautomator.RunTestCommand.run(RunTestCommand.java:91)
+
+	at com.android.commands.uiautomator.Launcher.main(Launcher.java:83)
+
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:249)
+
+
+</failure>
+  </testcase>
+  <testcase classname="com.bt.music.MusicTest" name="testBtDialAbnormalNumber" time="0.0">
+    <failure message="TC_ST16081569834,TC_ST16081569835,TC_ST16081569836:拨打特殊字符的电话号码 expected:&lt;true&gt; but was:&lt;false&gt;" type="junit.framework.AssertionFailedError">
+
+	at com.bt.music.MusicTest.testBtDialAbnormalNumber(MusicTest.java:143)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.start(UiAutomatorTestRunner.java:160)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.run(UiAutomatorTestRunner.java:96)
+
+	at com.android.commands.uiautomator.RunTestCommand.run(RunTestCommand.java:91)
+
+	at com.android.commands.uiautomator.Launcher.main(Launcher.java:83)
+
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:249)
+
+
+</failure>
+  </testcase>
+  <testcase classname="com.bt.music.MusicTest" name="testBtDialLongAndShortNumber" time="0.0" />
+  <testcase classname="com.bt.music.MusicTest" name="testBtMusicNextPrevious" time="0.0" />
+  <testcase classname="com.bt.music.MusicTest" name="testBtMusicPausePlay" time="0.0" />
+  <testcase classname="com.bt.music.MusicTest" name="testChangeLanguageWhenBtPlaying" time="0.0" />
+  <testcase classname="com.bt.music.MusicTest" name="testCheckID3" time="0.0" />
+  <testcase classname="com.bt.music.MusicTest" name="testDialWhileBtMusicPlaying" time="0.0">
+    <failure message="TC_ST16081569096:蓝牙音乐：音乐播放时车机端拨号 expected:&lt;true&gt; but was:&lt;false&gt;" type="junit.framework.AssertionFailedError">
+
+	at com.bt.music.MusicTest.testDialWhileBtMusicPlaying(MusicTest.java:179)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.start(UiAutomatorTestRunner.java:160)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.run(UiAutomatorTestRunner.java:96)
+
+	at com.android.commands.uiautomator.RunTestCommand.run(RunTestCommand.java:91)
+
+	at com.android.commands.uiautomator.Launcher.main(Launcher.java:83)
+
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:249)
+
+
+</failure>
+  </testcase>
+  <testcase classname="com.bt.music.MusicTest" name="testIntoBtMusicPlay" time="0.0" />
+  <testcase classname="com.bt.music.MusicTest" name="testLockScreenWhenBtPausing" time="0.001" />
+  <testcase classname="com.bt.music.MusicTest" name="testLockScreenWhenBtPlaying" time="0.0" />
+  <testcase classname="com.bt.music.MusicTest" name="testRvcBtMusicKeepPause" time="0.0">
+    <failure message="切换倒车不打断蓝牙音乐暂停状态： expected:&lt;true&gt; but was:&lt;false&gt;" type="junit.framework.AssertionFailedError">
+
+	at com.bt.music.MusicTest.testRvcBtMusicKeepPause(MusicTest.java:214)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.start(UiAutomatorTestRunner.java:160)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.run(UiAutomatorTestRunner.java:96)
+
+	at com.android.commands.uiautomator.RunTestCommand.run(RunTestCommand.java:91)
+
+	at com.android.commands.uiautomator.Launcher.main(Launcher.java:83)
+
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:249)
+
+
+</failure>
+  </testcase>
+  <testcase classname="com.bt.music.MusicTest" name="testSmsVoiceBtMusicPlaying" time="0.001" />
+  <testcase classname="com.bt.music.MusicTest" name="testSwitchBtFunctionCheckMusicPause" time="0.0">
+    <failure message="切换蓝牙功能界面不打断蓝牙音乐暂停状态： expected:&lt;true&gt; but was:&lt;false&gt;" type="junit.framework.AssertionFailedError">
+
+	at com.bt.music.MusicTest.testSwitchBtFunctionCheckMusicPause(MusicTest.java:224)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.start(UiAutomatorTestRunner.java:160)
+
+	at com.android.uiautomator.testrunner.UiAutomatorTestRunner.run(UiAutomatorTestRunner.java:96)
+
+	at com.android.commands.uiautomator.RunTestCommand.run(RunTestCommand.java:91)
+
+	at com.android.commands.uiautomator.Launcher.main(Launcher.java:83)
+
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:249)
+
+
+</failure>
+  </testcase>
+  <testcase classname="com.bt.music.MusicTest" name="testSwitchBtFunctionCheckMusicPlay" time="0.0" />
+  <testcase classname="com.bt.music.MusicTest" name="testSwitchFmBtMusicPauseInterrupt" time="0.0" />
+  <testcase classname="com.bt.music.MusicTest" name="testSwitchWifiWhenBtPlaying" time="0.0" />
+  <testcase classname="com.bt.music.MusicTest" name="testTurnOffBtWhileBtPlaying" time="0.0" />
+  <testcase classname="com.bt.music.MusicTest" name="testTurnOffOnBtWhileBtPlaying" time="0.0" />
+</testsuite>

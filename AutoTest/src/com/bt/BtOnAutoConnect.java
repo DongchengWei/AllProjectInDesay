@@ -8,6 +8,7 @@ import com.android.uiautomator.testrunner.UiAutomatorTestCase;
 import com.otherutils.Utils;
 import com.pageutil.BtTabPage;
 import com.pageutil.HomePage;
+import com.pageutil.MediaPage;
 import com.pageutil.SettingsPage;
 import com.runutils.RunTestCase;
 
@@ -17,7 +18,7 @@ import android.os.SystemClock;
 
 /* 
  * Case: 蓝牙开关切换，打开后能自动连接    循环100次
- * 命令：uiautomator runtest AutoTest.jar -c com.bt.BTOnAutoConnect
+ * 命令：uiautomator runtest AutoTest.jar --nohup -c com.bt.BTOnAutoConnect
  * 前提：1. 已有蓝牙连接记录，当前蓝牙处于关闭状态。
  * 步骤：多次反复的执行  蓝牙打开 - 自动连接 - 关闭      循环100次
  * 其他：设置测试次数,每个-e对应一个参数
@@ -60,15 +61,20 @@ public class BtOnAutoConnect extends UiAutomatorTestCase {
 		boolean isTestPass = false;
 		
 		HomePage homePage = new HomePage();
+		MediaPage mediaPage = new MediaPage();
 		SettingsPage settingsPage = new SettingsPage();
 		BtTabPage btTabPage = new BtTabPage();
 		
 		homePage.goBackHome();
 		try {
+			homePage.intoMultimedia();
+			mediaPage.intoSdMusic();
+			homePage.goBackHome();
 			homePage.intoSettings();
 			settingsPage.intoBtTab();
 		} catch (UiObjectNotFoundException e1) {
-			Utils.logPrint("UiObject not found");
+			Utils.logPrint("UiObject not found:" + e1.toString());
+			e1.printStackTrace();
 		}
 
 		//获取测试次数
@@ -125,11 +131,13 @@ public class BtOnAutoConnect extends UiAutomatorTestCase {
 					}
 				}
 				if (testCounter == testTimes) {
+					btTabPage.turnOnBT(3000);
 					if (passCounter == testCounter) {
 						isTestPass = true;//测试通过
 					}
 					keepTesting = false;
 					Utils.logForResult("Test Pass:" + passCounter + " times,Total Test:" + testCounter);
+					btTabPage.turnOnBT(3000);
 				}
 			} catch (UiObjectNotFoundException e) {
 				Utils.logPrint("UiObjectNotFoundException");

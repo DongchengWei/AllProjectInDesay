@@ -74,6 +74,8 @@ public class MusicTest extends UiAutomatorTestCase {
 		System.out.println("=================Bt Music cases===================");
 	}
     
+	public static final String PASS_STRING = "pass";
+	
 	BtMusicOperate btMusicOperate = new BtMusicOperate();
 	BtPhoneOperate btPhoneOperate = new BtPhoneOperate();
 	HomePage homePage = new HomePage();
@@ -117,13 +119,12 @@ public class MusicTest extends UiAutomatorTestCase {
 	 * 26.TC_ST16081569833,30
 	 * @Date 2017-05-05
 	 */
-	public void testBtDialLongAndShortNumber() {
-		boolean testPass = false;
-		final String caseStr = "TC_ST16081569828,TC_ST16081569829,TC_ST16081569830,TC_ST16081569831,TC_ST16081569832,TC_ST16081569833:拨打不同长度的电话号码";
+	public void test蓝牙拨打不同长度的电话号码() {
+		final String caseStr = "TC_ST16081569828,TC_ST16081569829,TC_ST16081569830,TC_ST16081569831,"
+				+ "TC_ST16081569832,TC_ST16081569833:拨打不同长度的电话号码";
 		Utils.logPrint("拨打特殊字符的电话号码");
-		testPass = btPhoneOperate.btDialLongAndShortNumber();
 		
-		assertEquals(caseStr, true, testPass);
+		assertEquals(caseStr, PASS_STRING, btPhoneOperate.btDialLongAndShortNumber());
 	}
 	
 	/**
@@ -133,106 +134,80 @@ public class MusicTest extends UiAutomatorTestCase {
 	 * 20.TC_ST16081569836//输入一串字符数字，以字符开头
 	 * @Date 2017-05-05
 	 */
-	public void testBtDialAbnormalNumber() {
-		boolean testPass = false;
+	public void test蓝牙拨打特殊字符的电话号码() {
 		final String caseStr = "TC_ST16081569834,TC_ST16081569835,TC_ST16081569836:拨打特殊字符的电话号码";
-		Utils.logPrint("TC_ST16081569834:拨打特殊字符的电话号码");
-		Utils.logPrint("TC_ST16081569835:拨打特殊字符的电话号码");
-		Utils.logPrint("TC_ST16081569836:拨打特殊字符的电话号码");
-		testPass = btPhoneOperate.btDialAbnormalNumber();
-		assertEquals(caseStr, true, testPass);
+		assertEquals(caseStr, PASS_STRING, btPhoneOperate.btDialAbnormalNumber());
 	}	
 	
 	/**
-	 * 17.TC_ST16081569110:蓝牙音乐：音乐播放时重启开关
+	 * 17.TC_ST16081569110:蓝牙音乐播放时重启开关
 	 * @Date 2017-04-28
 	 */
-	public void testTurnOffOnBtWhileBtPlaying() {
-		boolean testPass = false;
-		final String caseStr = "TC_ST16081569110:蓝牙音乐：音乐播放时重启开关";
-		Utils.logPrint(caseStr);
-		testPass = btMusicOperate.turnOffOnBtWhileBtPlaying();
-		assertEquals(caseStr, true, testPass);
+	public void test蓝牙音乐播放时重启开关() {
+		final String caseStr = "TC_ST16081569110_蓝牙音乐：音乐播放时重启开关";
+		assertEquals(caseStr, PASS_STRING, btMusicOperate.turnOffOnBtWhileBtPlaying());
 	}
 	
 	/**
-	 * 16.TC_ST16081569109:蓝牙音乐：音乐播放时关闭蓝牙开关
+	 * 16.TC_ST16081569109:蓝牙音乐播放时关闭蓝牙开关
 	 * @Date 2017-04-28
 	 */
-	public void testTurnOffBtWhileBtPlaying() {
-		boolean testPass = false;
-		final String caseStr = "TC_ST16081569109:蓝牙音乐：音乐播放时关闭蓝牙开关";
-		Utils.logPrint(caseStr);
-		testPass = btMusicOperate.turnOffBtWhileBtPlaying();
-		assertEquals(caseStr, true, testPass);
+	public void test蓝牙音乐播放时关闭蓝牙开关() {
+		final String caseStr = "TC_ST16081569109:蓝牙音乐播放时关闭蓝牙开关";
+		assertEquals(caseStr, PASS_STRING, btMusicOperate.turnOffBtWhileBtPlaying());
 	}
 	
 	/**
-	 * 15.TC_ST16081569096:蓝牙音乐：音乐播放时车机端拨号
+	 * 15.TC_ST16081569096:蓝牙音乐播放时车机端拨号
 	 * @Date 2017-04-28
 	 */
-	public void testDialWhileBtMusicPlaying() {
-		boolean testPass = false;
+	public void test蓝牙音乐播放时车机端拨号() {
 		final String caseStr = "TC_ST16081569096:蓝牙音乐：音乐播放时车机端拨号";
-		Utils.logPrint(caseStr);
-		testPass = btMusicOperate.dialWhileBtMusicPlaying();
-		assertEquals(caseStr, true, testPass);
+		assertEquals(caseStr, PASS_STRING, btMusicOperate.dialWhileBtMusicPlaying());
 	}
 	
 	/**
-	 * 14.TC_ST16081569088:蓝牙音乐：音乐播放时播报短信
+	 * 14.TC_ST16081569088:蓝牙音乐播放时播报短信
 	 * @Date 2017-04-27
 	 */
-	public void testSmsVoiceBtMusicPlaying() {
-		boolean testPass = false;
+	public void test蓝牙音乐播放时播报短信() {
 		final String caseStr = "TC_ST16081569088:蓝牙音乐：音乐播放时播报短信";
-		Utils.logPrint(caseStr);
-		testPass = btMusicOperate.smsVoiceBtMusicPlaying();
-		assertEquals(caseStr, true, testPass);
+		assertEquals(caseStr, PASS_STRING, btMusicOperate.smsVoiceBtMusicPlaying());
 	}
 	
 	/**
-	 * 13.TC_ST16081569078:蓝牙音乐：音乐播放时切换蓝牙功能界面
+	 * 13.TC_ST16081569078:音乐播放时切换蓝牙功能界面
 	 * @Date 2017-04-27
 	 */
-	public void testSwitchBtFunctionCheckMusicPlay() {
-		boolean testPass = false;
+	public void test音乐播放时切换蓝牙功能界面() {
 		final String caseStr = "TC_ST16081569078:蓝牙音乐：音乐播放时切换蓝牙功能界面";
-		Utils.logPrint(caseStr);
-		testPass = btMusicOperate.switchBtFunctionCheckMusicPlay();
-		assertEquals(caseStr, true, testPass);
+		assertEquals(caseStr, PASS_STRING, btMusicOperate.switchBtFunctionCheckMusicPlay());
 	}
 	
 	/**
-	 * 1.TC_ST16081569048:蓝牙音乐：切换倒车打断蓝牙音乐暂停状态
+	 * 1.TC_ST16081569048:切换倒车不打断蓝牙音乐暂停状态
 	 * @Date 2017-04-27
 	 */
-	public void testRvcBtMusicKeepPause() {
-		boolean testPass = false;
+	public void test切换倒车不打断蓝牙音乐暂停状态() {
 		Utils.logPrint("TC_ST16081569048:蓝牙音乐：切换倒车不打断蓝牙音乐暂停状态");
-		testPass = btMusicOperate.rvcBtMusicKeepPause();
-		assertEquals("切换倒车不打断蓝牙音乐暂停状态：", true, testPass);
+		assertEquals("切换倒车不打断蓝牙音乐暂停状态：", PASS_STRING, btMusicOperate.rvcBtMusicKeepPause());
 	}
 	/**
-	 * 2.TC_ST16081569047:蓝牙音乐：切换蓝牙功能界面不打断蓝牙音乐暂停状态
+	 * 2.TC_ST16081569047:切换蓝牙功能界面不打断蓝牙音乐暂停状态
 	 * @Date 2017-04-27
 	 */
-	public void testSwitchBtFunctionCheckMusicPause() {
-		boolean testPass = false;
+	public void test切换蓝牙功能界面不打断蓝牙音乐暂停状态() {
 		Utils.logPrint("TC_ST16081569047:蓝牙音乐：切换蓝牙功能界面不打断蓝牙音乐暂停状态");
-		testPass = btMusicOperate.switchBtFunctionCheckMusicPause();
-		assertEquals("切换蓝牙功能界面不打断蓝牙音乐暂停状态：", true, testPass);
+		assertEquals("切换蓝牙功能界面不打断蓝牙音乐暂停状态：", PASS_STRING, btMusicOperate.switchBtFunctionCheckMusicPause());
 	}
 	
 	/**
-	 * 3.TC_ST16081569046:蓝牙音乐：切换FM后返回蓝牙音乐打断音乐暂停状态
+	 * 3.TC_ST16081569046:切换FM后返回蓝牙音乐打断音乐暂停状态
 	 * Date:20170427 
 	 * */
-	public void testSwitchFmBtMusicPauseInterrupt() {
-		boolean testPass = false;
+	public void test切换FM后返回蓝牙音乐打断音乐暂停状态() {
 		Utils.logPrint("TC_ST16081569046:蓝牙音乐：切换FM后返回蓝牙音乐打断音乐暂停状态");
-		testPass = btMusicOperate.switchFmBtMusicPauseInterrupt();
-		assertEquals("切换FM后返回蓝牙音乐打断音乐暂停状态：", true, testPass);
+		assertEquals("切换FM后返回蓝牙音乐打断音乐暂停状态：", PASS_STRING, btMusicOperate.switchFmBtMusicPauseInterrupt());
 	}
 	
 	/**
@@ -240,81 +215,68 @@ public class MusicTest extends UiAutomatorTestCase {
 	 *   TC_ST16081568983:蓝牙音乐播放时车机端激活单曲循环模式
 	 *   TC_ST16081568984:蓝牙音乐播放时车机端激活全部循环模式
 	 * */
-	public void testBtChangeToShuffleMode() {
-		boolean testPass = false;
+	public void test蓝牙音乐切换播放模式() {
 		Utils.logPrint("TC_ST16081568980,TC_ST16081568983,TC_ST16081568984蓝牙音乐播放时车机端改变播放模式");
-		testPass = btMusicOperate.changeToShuffleMode();
-		assertEquals("蓝牙音乐播放时车机端改变播放模式：", true, testPass);
+		assertEquals("蓝牙音乐播放时车机端改变播放模式：", PASS_STRING, btMusicOperate.changeToShuffleMode());
 	}
 	/**
 	 * 5.TC_ST17031090858：蓝牙音乐播放时切换wifi开关
 	 * */
-	public void testSwitchWifiWhenBtPlaying(){
-		boolean isPlaying = false;
+	public void test蓝牙音乐播放时切换wifi开关(){
 		Utils.logPrint("TC_ST17031090858：蓝牙音乐播放时切换wifi开关");
-		isPlaying = btMusicOperate.switchWifiWhenBtPlaying();
-		assertEquals("蓝牙音乐播放时切换wifi开关结果：", true, isPlaying);
+		assertEquals("蓝牙音乐播放时切换wifi开关结果：", PASS_STRING, btMusicOperate.switchWifiWhenBtPlaying());
 	}
 	
 	/**
 	 * 6.TC_ST17031090857：蓝牙音乐播放时修改系统语言
 	 * */
-	public void testChangeLanguageWhenBtPlaying(){
-		boolean isPlaying = false;
+	public void test蓝牙音乐播放时修改系统语言(){
 		Utils.logPrint("TC_ST17031090857：蓝牙音乐播放时改变系统语言");
-		isPlaying = btMusicOperate.changeLanguageWhenBtPlaying();
-		assertEquals("蓝牙音乐播放时修改系统语言结果：", true, isPlaying);
+		assertEquals("蓝牙音乐播放时修改系统语言结果：", PASS_STRING, btMusicOperate.changeLanguageWhenBtPlaying());
 	}
 	
 	/**
 	 * 7.TC_ST16081568963,TC_ST16081569070:启动蓝牙音乐的两种方式
 	 * */
-	public void testIntoBtMusicPlay(){
+	public void test启动蓝牙音乐的两种方式(){
 		Utils.logPrint("TC_ST16081568963,TC_ST16081569070:启动蓝牙音乐的两种方式。");
-		boolean isPlaying = btMusicOperate.intoBtMusicAutoPlaying();
-		assertEquals("进入蓝牙音乐结果：", true, isPlaying);
+		assertEquals("进入蓝牙音乐结果：", PASS_STRING, btMusicOperate.intoBtMusicAutoPlaying());
 	}
 	
 	/**
 	 * 8.TC_ST16081568964:检查ID3
 	 * */
-	public void testCheckID3() {
+	public void test蓝牙音乐检查ID3() {
 		Utils.logPrint("TC_ST16081568964：蓝牙音乐检查ID3");
-		boolean testResult = btMusicOperate.checkID3BtMusic();
-		assertEquals("检查ID3结果：", true, testResult);
+		assertEquals("检查ID3结果：", PASS_STRING, btMusicOperate.checkID3BtMusic());
 	}
 	/**
 	 * 9.TC_ST16081568965,TC_ST16081568967：蓝牙音乐暂停/播放
 	 * */
-	public void testBtMusicPausePlay() {
-		boolean testResult = false;
+	public void test蓝牙音乐暂停和播放() {
 		Utils.logPrint("TC_ST16081568965,TC_ST16081568967：蓝牙音乐暂停/播放");
-		testResult = btMusicOperate.btMusicPausePlay();
-		assertEquals("蓝牙音乐暂停播放：", true, testResult);
+		assertEquals("蓝牙音乐暂停播放：", PASS_STRING, btMusicOperate.btMusicPausePlay());
 	}
 	/**
 	 * 10.TC_ST16081568969,TC_ST16081568970：蓝牙音乐下一曲上一曲
 	 * */
-	public void testBtMusicNextPrevious() {
+	public void test蓝牙音乐下一曲上一曲() {
 		Utils.logPrint("TC_ST16081568969,TC_ST16081568970：蓝牙音乐下一曲上一曲");
-		boolean testResult = btMusicOperate.btMusicNextPrevious();
-		assertEquals("蓝牙音乐下一曲上一曲：", true, testResult);
+		assertEquals("蓝牙音乐下一曲上一曲：", PASS_STRING, btMusicOperate.btMusicNextPrevious());
 	}
 	/**
 	 * 11.TC_ST16081569076：蓝牙音乐播放时锁屏
 	 * */
-	public void testLockScreenWhenBtPlaying() {
+	public void test蓝牙音乐播放时锁屏() {
 		Utils.logPrint("TC_ST16081569076：蓝牙音乐播放时锁屏");
-		boolean testResult = btMusicOperate.lockScreenWhenBtPlaying();
-		assertEquals("蓝牙音乐播放时锁屏并解锁：", true, testResult);
+		assertEquals("蓝牙音乐播放时锁屏并解锁：", PASS_STRING, btMusicOperate.lockScreenWhenBtPlaying());
 	}
 	/**
 	 * 12.TC_ST16081569077：蓝牙音乐暂停时锁屏
 	 * */
-	public void testLockScreenWhenBtPausing() {
+	public void test蓝牙音乐暂停时锁屏() {
 		Utils.logPrint("TC_ST16081569077：蓝牙音乐暂停时锁屏");
-		boolean testResult = btMusicOperate.lockScreenWhenBtPlaying();
-		assertEquals("蓝牙音乐暂停时锁屏并解锁：", true, testResult);
+		assertEquals("蓝牙音乐暂停时锁屏并解锁：", PASS_STRING, btMusicOperate.lockScreenWhenBtPlaying());
 	}
 }
 

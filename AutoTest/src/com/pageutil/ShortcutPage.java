@@ -6,6 +6,7 @@ import com.android.uiautomator.core.UiObjectNotFoundException;
 import com.android.uiautomator.core.UiScrollable;
 import com.android.uiautomator.core.UiSelector;
 import com.android.uiautomator.testrunner.UiAutomatorTestCase;
+import com.otherutils.Utils;
 
 public class ShortcutPage extends UiAutomatorTestCase {
 	
@@ -47,7 +48,11 @@ public class ShortcutPage extends UiAutomatorTestCase {
 		if (firstAppObj.click()) {
 			if (lockScreenShowTimeObj.waitForExists(3000)) {
 				isOk = true;
+			} else {
+				Utils.failInfo += "：进入锁屏界面失败（时钟界面没出现）";
 			}
+		} else {
+			Utils.failInfo += "：点击锁屏失败（或锁屏不是第一个应用）";
 		}
 		return isOk;
 	}
@@ -61,7 +66,11 @@ public class ShortcutPage extends UiAutomatorTestCase {
 		if (lockScreenShowTimeObj.click()) {
 			if (lockScreenShowTimeObj.waitUntilGone(3000)) {
 				isOk = true;
+			} else {
+				Utils.failInfo += "：解锁失败（时钟界面没退出）";
 			}
+		} else {
+			Utils.failInfo += "：点击锁屏时间控件失败";
 		}
 		return isOk;
 	}

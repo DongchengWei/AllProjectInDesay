@@ -49,6 +49,7 @@ public class SettingsPage extends UiAutomatorTestCase {
 		if (btTabObj.click()) {
 			return true;
 		} else {
+			Utils.failInfo += ":点击蓝牙Tab失败";
 			return false;
 		}
 	}

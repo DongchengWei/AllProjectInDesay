@@ -78,7 +78,7 @@ public class BtSwitchPresure extends UiAutomatorTestCase {
 			String testTimesStr = devicesNameBundle.getString("TestTimes");
 			testTimes = Long.parseLong(testTimesStr);
 		} else {
-			testTimes = 200;
+			testTimes = 50;
 		}
 		Utils.logPrint("testTimes = " + testTimes);
 		

@@ -187,6 +187,7 @@ public class HomePage extends UiAutomatorTestCase {
 		if (settingObj.waitForExists(seconds * 1000)) {
 			return true;
 		}else {
+			Utils.failInfo += ":等待home页面超时";
 			return false;
 		}
 	}
@@ -197,6 +198,8 @@ public class HomePage extends UiAutomatorTestCase {
 		boolean intoOk = false;
 		if (multiMediaObj.click()) {
 			intoOk = true;
+		} else {
+			Utils.failInfo += "点击影音媒体失败";
 		}
 		return intoOk;
 	}
@@ -207,6 +210,7 @@ public class HomePage extends UiAutomatorTestCase {
 		if (phoneObj.click()) {
 			return true;
 		} else {
+			Utils.failInfo += ":点击电话通讯失败";
 			return false;
 		}
 	}
@@ -217,6 +221,7 @@ public class HomePage extends UiAutomatorTestCase {
 		if (settingObj.click()) {
 			return true;
 		} else {
+			Utils.failInfo += ":点击设置失败";
 			return false;
 		}
 	}
@@ -227,6 +232,7 @@ public class HomePage extends UiAutomatorTestCase {
 		if (appsObj.click()) {
 			return true;
 		} else {
+			Utils.failInfo += ":点击本地应用失败";
 			return false;
 		}
 	}

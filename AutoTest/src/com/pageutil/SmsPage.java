@@ -1,9 +1,11 @@
 package com.pageutil;
 
+import com.android.uiautomator.core.UiCollection;
 import com.android.uiautomator.core.UiObject;
 import com.android.uiautomator.core.UiObjectNotFoundException;
 import com.android.uiautomator.core.UiSelector;
 import com.android.uiautomator.testrunner.UiAutomatorTestCase;
+import com.otherutils.Utils;
 
 public class SmsPage extends UiAutomatorTestCase {
 
@@ -25,6 +27,13 @@ public class SmsPage extends UiAutomatorTestCase {
 	UiObject smsChatListObj = new UiObject(new UiSelector()
 			.resourceId("com.thundersoft.call:id/chat_msg_listview"));
 	
+	
+	//短信语音播报的按钮
+	UiObject smsVoicePlayObj = new UiObject(new UiSelector()
+			.resourceId("com.thundersoft.call:id/sms_chat_tts"));
+	UiCollection smsChatListCol = new UiCollection(new UiSelector()
+			.resourceId("com.thundersoft.call:id/chat_msg_listview"));
+	
 	/**
 	 * 获取短信个数
 	 * @param timeout 等待短信列表出现的超时时间
@@ -34,11 +43,17 @@ public class SmsPage extends UiAutomatorTestCase {
 	 */
 	public String getSmsCounter(long timeout) throws UiObjectNotFoundException {
 		String smsCounterStr = "0";
-		if (smsListObj.waitForExists(timeout)) {
-			String smsStr = smsCounterObj.getText();
-			String[] strings = smsStr.split("\\(");//正则表达式的括号需要转义
-			String getCountStr = strings[1];
-			smsCounterStr = getCountStr.substring(0, getCountStr.length()-1);
+		if (smsListObj.waitForExists(3000)) {
+			if (smsItemObj.waitForExists(timeout)) {
+				String smsStr = smsCounterObj.getText();
+				String[] strings = smsStr.split("\\(");//正则表达式的括号需要转义
+				String getCountStr = strings[1];
+				smsCounterStr = getCountStr.substring(0, getCountStr.length()-1);
+			} else {
+				Utils.logPrint("smsItemObj.waitForExists(timeout) not exists" + timeout);
+			}
+		} else {
+			Utils.logPrint("smsListObj.waitForExists(3000) not exists");
 		}
 		return smsCounterStr;
 	}
@@ -59,8 +74,6 @@ public class SmsPage extends UiAutomatorTestCase {
 		UiObject smsContentObj = new UiObject(new UiSelector()
 				.resourceId("com.thundersoft.call:id/tv_chatcontent"));
 		smsContentObj.click();//点击短信内容，会出现语音播放按钮
-		UiObject smsVoicePlayObj = new UiObject(new UiSelector()
-				.resourceId("com.thundersoft.call:id/sms_chat_tts"));
 		if (smsVoicePlayObj.waitForExists(3000)) {
 			smsVoicePlayObj.click();//点击语音播放按钮开始播报短信
 			if (smsVoicePlayObj.waitUntilGone(120000)) {//2分钟要播报完否则当做失败
@@ -70,5 +83,36 @@ public class SmsPage extends UiAutomatorTestCase {
 			}
 		}
 		return playOk;
+	}
+	
+	public boolean playLastSmsChat() throws UiObjectNotFoundException {
+		boolean isOk = false;
+		
+		int smsPageCount = smsChatListObj.getChildCount();
+		Utils.logPrint("smsPageCount:" + smsPageCount);
+		UiObject lastChatObj = smsChatListObj.getChild(new UiSelector().className("android.widget.LinearLayout").instance(smsPageCount));
+		UiObject textContentObj = lastChatObj.getChild(new UiSelector().resourceId("com.thundersoft.call:id/tv_chatcontent"));
+		if (textContentObj.exists()) {
+			textContentObj.click();
+			if (smsVoicePlayObj.waitForExists(3000)) {
+				smsVoicePlayObj.click();//点击语音播放按钮开始播报短信
+				if (smsVoicePlayObj.waitUntilGone(60000)) {//1分钟要播报完否则当做失败
+					isOk = true;
+				} else {
+					smsVoicePlayObj.click();//超过1分钟点击停止播报
+					if (smsVoicePlayObj.waitUntilGone(2000)) {
+						isOk = true;
+					} else {
+						Utils.logPrint("fail:smsVoicePlayObj not gone");
+					}
+				}
+			} else {
+				Utils.logPrint("fail:smsVoicePlayObj not exists");
+			}
+		} else {
+			Utils.logPrint("fail:textContentObj.exists() not exists");
+		}
+		
+		return isOk;
 	}
 }

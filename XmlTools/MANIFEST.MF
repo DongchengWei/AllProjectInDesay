@@ -1,0 +1,3 @@
+Manifest-Version: 1.0 
+Class-Path: lib/ant.jar lib/ant-junit.jar lib/ddmlib.jar lib/hamcrest-core-1.3.jar lib/junit-4.12.jar 
+Main-Class: com.xmlutils.Runner 

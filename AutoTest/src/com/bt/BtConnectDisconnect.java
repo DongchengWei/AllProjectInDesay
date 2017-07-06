@@ -8,6 +8,7 @@ import com.android.uiautomator.testrunner.UiAutomatorTestCase;
 import com.otherutils.Utils;
 import com.pageutil.BtTabPage;
 import com.pageutil.HomePage;
+import com.pageutil.MediaPage;
 import com.pageutil.SettingsPage;
 import com.runutils.RunTestCase;
 
@@ -71,7 +72,7 @@ public class BtConnectDisconnect extends UiAutomatorTestCase {
 			if (devicesNameBundle.getString("DeviceName") != null) {
 				deviceNameStr = devicesNameBundle.getString("DeviceName");
 			} else {
-				deviceNameStr = "P9";
+				deviceNameStr = "vivo";
 			}
 			Utils.logPrint("deviceNameStr = " + deviceNameStr);
 			
@@ -81,7 +82,7 @@ public class BtConnectDisconnect extends UiAutomatorTestCase {
 				String testTimesStr = devicesNameBundle.getString("TestTimes");
 				testTimes = Long.parseLong(testTimesStr);
 			} else {
-				testTimes = 100;
+				testTimes = 500;
 			}
 			Utils.logPrint("testTimes = " + testTimes);
 			
@@ -89,11 +90,11 @@ public class BtConnectDisconnect extends UiAutomatorTestCase {
 			HomePage homePage = new HomePage();
 			SettingsPage settingsPage = new SettingsPage();
 			BtTabPage btTabPage = new BtTabPage();
-//			MediaPage mediaPage = new MediaPage();
+			MediaPage mediaPage = new MediaPage();
 			
-//			homePage.goBackHome();
-//			homePage.intoMultimedia();
-//			mediaPage.intoLocalMusic();
+			homePage.goBackHome();
+			homePage.intoMultimedia();
+			mediaPage.intoLocalMusic();
 			
 			homePage.goBackHome();		//home
 			homePage.intoSettings();	//settings
@@ -130,6 +131,7 @@ public class BtConnectDisconnect extends UiAutomatorTestCase {
 					}
 					keepTesting = false;
 					Utils.logForResult("Test Pass:" + testPassCounter + " times,Total Test:" + testCounter);
+					btTabPage.connectBtDevice(deviceNameStr, BtTabPage.ALL_CONNECT);
 				}
 			}
 		} catch (UiObjectNotFoundException e) {

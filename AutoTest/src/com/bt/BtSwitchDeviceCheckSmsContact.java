@@ -7,9 +7,11 @@ import com.android.uiautomator.core.UiObjectNotFoundException;
 import com.android.uiautomator.testrunner.UiAutomatorTestCase;
 import com.otherutils.Utils;
 import com.pageutil.BtTabPage;
+import com.pageutil.ContactPage;
 import com.pageutil.HomePage;
 import com.pageutil.PhonePage;
 import com.pageutil.SettingsPage;
+import com.pageutil.SmsPage;
 import com.runutils.RunTestCase;
 
 import android.os.Bundle;
@@ -64,7 +66,8 @@ public class BtSwitchDeviceCheckSmsContact extends UiAutomatorTestCase {
 		SettingsPage settingsPage = new SettingsPage();
 		BtTabPage btTabPage = new BtTabPage();
 		PhonePage phonePage = new PhonePage();
-		
+		ContactPage contactPage = new ContactPage();
+		SmsPage smsPage = new SmsPage();
 		
 		String firstDeviceStr = "";
 		String secondDeviceStr = "";
@@ -72,14 +75,14 @@ public class BtSwitchDeviceCheckSmsContact extends UiAutomatorTestCase {
 		if (devicesNameBundle.getString("FirstDevice") != null) {
 			firstDeviceStr = devicesNameBundle.getString("FirstDevice");
 		} else {
-			firstDeviceStr = "P9";
+			firstDeviceStr = "Samsung";
 		}
 		Utils.logPrint("firstDeviceName = " + firstDeviceStr);
 		
 		if (devicesNameBundle.getString("SecondDevice") != null) {
 			secondDeviceStr = devicesNameBundle.getString("SecondDevice");
 		} else {
-			secondDeviceStr = "helpphone";
+			secondDeviceStr = "MEIZU";
 		}
 		Utils.logPrint("secondDeviceName = " + secondDeviceStr);
 		
@@ -108,9 +111,13 @@ public class BtSwitchDeviceCheckSmsContact extends UiAutomatorTestCase {
 					homePage.goBackHome();
 					homePage.intoPhone();
 					if (phonePage.intoContact()) {
+						Utils.logPrint("contacts Counter : " + contactPage.getConactsCounter(20000));
+						
 						getUiDevice().pressBack();
 						sleep(1000);
 						if (phonePage.intoMessaging()) {
+							Utils.logPrint("Sms Counter : " + smsPage.getSmsCounter(20000));
+							
 							homePage.goBackHome();		//home
 							homePage.intoSettings();
 							settingsPage.intoBtTab();	//btsetting
@@ -118,9 +125,13 @@ public class BtSwitchDeviceCheckSmsContact extends UiAutomatorTestCase {
 								homePage.goBackHome();
 								homePage.intoPhone();
 								if (phonePage.intoContact()) {
+									Utils.logPrint("contacts Counter : " + contactPage.getConactsCounter(20000));
+									
 									getUiDevice().pressBack();
 									sleep(1000);
 									if (phonePage.intoMessaging()) {
+										Utils.logPrint("Sms Counter : " + smsPage.getSmsCounter(20000));
+										
 										passCounter ++;
 										Utils.logForResult("Test Pass:" + passCounter + " times,Total Test:" + testCounter);
 									} else {

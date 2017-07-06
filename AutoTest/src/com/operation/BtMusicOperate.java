@@ -61,9 +61,7 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		boolean isPlaying = false;
-		isPlaying = dialWhileBtMusicPlaying();
-		assertEquals("测试结果：", true, isPlaying);
+		assertEquals("测试结果", "pass", turnOffOnBtWhileBtPlaying());
 	}
 	
 	public boolean btTest() {
@@ -82,12 +80,12 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 
 	
 	/**
-	 * 蓝牙音乐播放时重启蓝牙开关后进入蓝牙音乐，检查状态
+	 * 17.蓝牙音乐播放时重启蓝牙开关后进入蓝牙音乐，检查状态
 	 * @return
 	 * @Date 2017-04-28
 	 */
-	public boolean turnOffOnBtWhileBtPlaying() {
-		boolean isOk = false;
+	public String turnOffOnBtWhileBtPlaying() {
+		Utils.failInfo = "start";
 		try {
 			homePage.intoMultimedia();
 			mediaPage.intoFmAmPage();
@@ -103,28 +101,32 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 			btTabPage.isBTConnectedAll(30000);
 			
 			navBarPage.clickMedia();
+			SystemClock.sleep(3000);
 			mediaPage.intoBtMusic();
 			if (mediaPage.musicDoPause()) {
 				if (mediaPage.musicDoPlay()) {
 					if (mediaPage.nextMusic()) { 
-						isOk = true;
+						Utils.failInfo = "pass";
 						Utils.logPrint("turnOffOnBtWhileBtPlaying() pass");
 					}
 				}
 			}
+			if (! Utils.failInfo.equals("pass")) {
+				Utils.takeScreenshotToPath("/sdcard/", "蓝牙音乐播放时重启蓝牙开关");
+			}
 		} catch (UiObjectNotFoundException e) {
-			Utils.logPrint("turnOffOnBtWhileBtPlaying():" + e.toString());
+			Utils.failInfo =  Utils.failInfo + "->UiObjectNotFoundException:" + e.toString();
 		}
 		
-		return isOk;
+		return Utils.failInfo;
 	}
 	/**
-	 * 蓝牙音乐播放时关闭蓝牙开关
+	 * 16.蓝牙音乐播放时关闭蓝牙开关
 	 * @return
 	 * @Date 2017-04-28
 	 */
-	public boolean turnOffBtWhileBtPlaying() {
-		boolean isOk = false;
+	public String turnOffBtWhileBtPlaying() {
+		Utils.failInfo = "start";
 		
 		try {
 			if (homePage.intoMultimedia()) {
@@ -135,47 +137,52 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 							if (homePage.intoSettings()) {
 								if (settingsPage.intoBtTab()) {
 									if (btTabPage.turnOffBT(3000)) {
+										Utils.logPrint("btTabPage.turnOffBT(3000) OK");
 										navBarPage.clickMedia();
+										SystemClock.sleep(5000);
 										if (mediaPage.SourceJudge() == MediaPage.FMAMTITLE) {
-											isOk = true;
+											Utils.failInfo = "pass";
 											Utils.logPrint("turnOffBtWhileBtPlaying() pass");
-											homePage.goBackHome();
-											homePage.intoSettings();
-											settingsPage.intoBtTab();
-											btTabPage.turnOnBT(3000);
+										} else {
+											Utils.failInfo += "->fail：当前source=" + mediaPage.getSourceTitle();
 										}
-									}
+									} 
 								}
 							}
 						}
 					}
 				}
 			}
+			if (! Utils.failInfo.equals("pass")) {
+				Utils.takeScreenshotToPath("/sdcard/", "蓝牙音乐播放时关闭蓝牙开关");
+			}
+			homePage.goBackHome();
+			homePage.intoSettings();
+			settingsPage.intoBtTab();
+			btTabPage.turnOnBT(3000);
 		} catch (UiObjectNotFoundException e) {
-			Utils.logPrint("turnOffBtWhileBtPlaying():" + e.toString());
+			Utils.failInfo =  Utils.failInfo + "->找不到控件:" + e.toString();
 		}
 		
-		return isOk;
+		return Utils.failInfo;
 	}
 
 	/**
-	 * 蓝牙音乐播放时拨打10086后不影响ID3和循环模式
+	 * 15.蓝牙音乐播放时拨打10086后不影响ID3和循环模式
 	 * @return
 	 * @Date 2017-04-28
 	 */
-	public boolean dialWhileBtMusicPlaying() {
-		boolean isOk = false;
+	public String dialWhileBtMusicPlaying() {
+		Utils.failInfo = "start";
 		
 		String dialNumStr = "10086";
 		String musicTitleStr = "";
 		String artistStr = "";
 		String albumStr = "";
-		String playModeStr = "";
 		try {
 			if (homePage.intoMultimedia()) {
 				if (mediaPage.intoBtMusic()) {
 					if (mediaPage.musicDoPlay()) {
-						playModeStr = mediaPage.getPlayModeString();
 						musicTitleStr = mediaPage.getMusicTitle();
 						artistStr = mediaPage.getMusicArtistText();
 						albumStr = mediaPage.getMusicAlbumText();
@@ -187,17 +194,21 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 										if (mediaPage.SourceJudge() == MediaPage.BLUETOOTHTITLE) {
 											Utils.logPrint("checking...");
 											if (mediaPage.isPlaying()) {
-												if (mediaPage.getPlayModeString().equals(playModeStr)) {
-													String afterTitleStr = mediaPage.getMusicTitle();
-													String afterArtistStr = mediaPage.getMusicArtistText();
-													String afterAlbumStr = mediaPage.getMusicAlbumText();
-													if (afterAlbumStr.equals(albumStr) && afterArtistStr.equals(artistStr) && afterTitleStr.equals(musicTitleStr)) {
-														isOk = true;
-														Utils.logPrint("dialWhileBtMusicPlaying() pass");
-													}
+												String afterTitleStr = mediaPage.getMusicTitle();
+												String afterArtistStr = mediaPage.getMusicArtistText();
+												String afterAlbumStr = mediaPage.getMusicAlbumText();
+												if (afterAlbumStr.equals(albumStr) && afterArtistStr.equals(artistStr) && afterTitleStr.equals(musicTitleStr)) {
+													Utils.failInfo = "pass";
+													Utils.logPrint("dialWhileBtMusicPlaying() pass");
 												}
+											} else {
+												Utils.failInfo += "：不是播放状态";
 											}
+										} else {
+											Utils.failInfo += "：当前source不是蓝牙而是_" + mediaPage.getSourceTitle();
 										}
+									} else {
+										Utils.failInfo += "：点击侧边栏媒体失败";
 									}
 								}
 							}
@@ -206,25 +217,23 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 				}
 			}
 		} catch (UiObjectNotFoundException e) {
-			Utils.logPrint("dialWhileBtMusicPlaying:" + e.toString());
+			Utils.failInfo =  Utils.failInfo + "->UiObjectNotFoundException:" + e.toString();
 		}
 		
-		return isOk;
+		return Utils.failInfo;
 	}
 	
 	/**
-	 * 蓝牙音乐：音乐播放时播报短信
+	 * 14.蓝牙音乐：音乐播放时播报短信
 	 * @return
 	 * @Date 2017-04-27
 	 */
-	public boolean smsVoiceBtMusicPlaying() {
-		boolean isOk = false;
-		String playModeStr = "";
+	public String smsVoiceBtMusicPlaying() {
+		Utils.failInfo = "start";
 		try {
 			if (homePage.intoMultimedia()) {
 				if (mediaPage.intoBtMusic()) {
 					if (mediaPage.musicDoPlay()) {
-						playModeStr = mediaPage.getPlayModeString();
 						if (navBarPage.clickPhone()) {
 							if (phonePage.intoMessaging()) {
 								if (smsPage.intoFirstChatList()) {
@@ -233,10 +242,8 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 											if (mediaPage.SourceJudge() == MediaPage.BLUETOOTHTITLE) {
 												if (mediaPage.isPlaying()) {
 													//播放模式没有变化
-													if (mediaPage.getPlayModeString().equals(playModeStr)) {
-														isOk = true;
+													Utils.failInfo = "pass";
 														Utils.logPrint("smsVoiceBtMusicPlaying() pass");
-													}
 												}
 											}
 										}
@@ -248,26 +255,24 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 				}
 			}
 		} catch (UiObjectNotFoundException e) {
-			Utils.logPrint("smsVoiceBtMusicPlaying:" + e.toString());
+			Utils.failInfo =  Utils.failInfo + "->UiObjectNotFoundException:" + e.toString();
 		}
 		
-		return isOk;
+		return Utils.failInfo;
 	}
 	
 	/**
-	 * 切换蓝牙其他功能界面检查蓝牙音乐是否保持播放且播放模式没有变化
+	 * 13.切换蓝牙其他功能界面检查蓝牙音乐是否保持播放且播放模式没有变化
 	 * @return
 	 * @Date 2017-04-27
 	 */
-	public boolean switchBtFunctionCheckMusicPlay() {
-		boolean isOk = false;
+	public String switchBtFunctionCheckMusicPlay() {
+		Utils.failInfo = "start";
 		
-		String playModeStr = "";
 		try {
 			if (homePage.intoMultimedia()) {
 				if (mediaPage.intoBtMusic()) {
 					if (mediaPage.musicDoPlay()) {
-						playModeStr = mediaPage.getPlayModeString();
 						homePage.goBackHome();
 						homePage.intoPhone();
 						if (phonePage.intoRecents()) {
@@ -280,11 +285,9 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 										if (navBarPage.clickMedia()) {
 											if (mediaPage.SourceJudge() == MediaPage.BLUETOOTHTITLE) {
 												if (mediaPage.isPlaying()) {
-													//播放模式没有变化
-													if (mediaPage.getPlayModeString().equals(playModeStr)) {
-														isOk = true;
-														Utils.logPrint("switchBtFunctionCheckMusicPlay() pass");
-													}
+												//播放模式没有变化
+													Utils.failInfo = "pass";
+													Utils.logPrint("switchBtFunctionCheckMusicPlay() pass");
 												}
 											}
 										}
@@ -296,44 +299,40 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 				}
 			}
 		} catch (UiObjectNotFoundException e) {
-			Utils.logPrint("switchBtFunctionCheckMusicPlay:" + e.toString());
+			Utils.failInfo =  Utils.failInfo + "->UiObjectNotFoundException:" + e.toString();
 		}
 		
-		return isOk;
+		return Utils.failInfo;
 	}
 	
 	/**
-	 * 蓝牙音乐：切换倒车不打断蓝牙音乐暂停状态
+	 * 12.蓝牙音乐：切换倒车不打断蓝牙音乐暂停状态
 	 * @return
 	 * @Date 2017-04-27
 	 */
-	public boolean rvcBtMusicKeepPause() {
-		boolean isOk = false;
+	public String rvcBtMusicKeepPause() {
+		Utils.failInfo = "start";
 		
 		String musicTitleStr = "";
 		String artistStr = "";
 		String albumStr = "";
-		String playModeStr = "";
 		try {
 			if (homePage.intoMultimedia()) {
 				if (mediaPage.intoBtMusic()) {
 					if (mediaPage.musicDoPause()) {
-						playModeStr = mediaPage.getPlayModeString();
 						musicTitleStr = mediaPage.getMusicTitle();
 						artistStr = mediaPage.getMusicArtistText();
 						albumStr = mediaPage.getMusicAlbumText();
 						if (reversePage.intoReversePage()) {
 							if (reversePage.exitReversePage()) {
 								if (mediaPage.SourceJudge() == MediaPage.BLUETOOTHTITLE) {
-									if (mediaPage.isPlaying()) {
-										if (mediaPage.getPlayModeString().equals(playModeStr)) {
-											String afterTitleStr = mediaPage.getMusicTitle();
-											String afterArtistStr = mediaPage.getMusicArtistText();
-											String afterAlbumStr = mediaPage.getMusicAlbumText();
-											if (afterAlbumStr.equals(albumStr) && afterArtistStr.equals(artistStr) && afterTitleStr.equals(musicTitleStr)) {
-												isOk = true;
-												Utils.logPrint("rvcBtMusicKeepPause() pass");
-											}
+									if (! mediaPage.isPlaying()) {
+										String afterTitleStr = mediaPage.getMusicTitle();
+										String afterArtistStr = mediaPage.getMusicArtistText();
+										String afterAlbumStr = mediaPage.getMusicAlbumText();
+										if (afterAlbumStr.equals(albumStr) && afterArtistStr.equals(artistStr) && afterTitleStr.equals(musicTitleStr)) {
+											Utils.failInfo = "pass";
+											Utils.logPrint("rvcBtMusicKeepPause() pass");
 										}
 									}
 								}
@@ -343,19 +342,19 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 				}
 			}
 		} catch (UiObjectNotFoundException e) {
-			Utils.logPrint("rvcBtMusicKeepPause:" + e.toString());
+			Utils.failInfo =  Utils.failInfo + "->UiObjectNotFoundException:" + e.toString();
 		}
 		
-		return isOk;
+		return Utils.failInfo;
 	}
 	
 	/**
-	 * 蓝牙音乐：切换蓝牙功能界面保持暂停状态
+	 * 11.蓝牙音乐：切换蓝牙功能界面保持暂停状态
 	 * @return 
 	 * @Date 2017-04-27
 	 */
-	public boolean switchBtFunctionCheckMusicPause() {
-		boolean isOk = false;
+	public String switchBtFunctionCheckMusicPause() {
+		Utils.failInfo = "start";
 		
 		try {
 			if (homePage.intoMultimedia()) {
@@ -373,10 +372,16 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 										if (navBarPage.clickMedia()) {
 											if (mediaPage.SourceJudge() == MediaPage.BLUETOOTHTITLE) {
 												if (! mediaPage.isPlaying()) {
-													isOk = true;
+													Utils.failInfo = "pass";
 													Utils.logPrint("switchBtFunctionCheckMusicPause() pass");
+												} else {
+													Utils.logPrint("mediaPage.isPlaying() playing");
 												}
+											} else {
+												Utils.logPrint("mediaPage.SourceJudge() fail");
 											}
+										} else {
+											Utils.logPrint("navBarPage.clickMedia() fail");
 										}
 									}
 								}
@@ -386,18 +391,18 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 				}
 			}
 		} catch (UiObjectNotFoundException e) {
-			Utils.logPrint("switchBtFunctionCheckMusicPause:" + e.toString());
+			Utils.failInfo =  Utils.failInfo + "->UiObjectNotFoundException:" + e.toString();
 		}
 		
-		return isOk;
+		return Utils.failInfo;
 	}
 	
 	/**
-	 * 蓝牙音乐：切换FM后返回蓝牙音乐打断音乐暂停状态
+	 * 10.蓝牙音乐：切换FM后返回蓝牙音乐打断音乐暂停状态
 	 * Date:20170427 
 	 * */
-	public boolean switchFmBtMusicPauseInterrupt() {
-		boolean isOk = false;
+	public String switchFmBtMusicPauseInterrupt() {
+		Utils.failInfo = "start";
 		
 		try {
 			if (homePage.intoMultimedia()) {
@@ -408,7 +413,7 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 								if (mediaPage.nextSource()) {
 									if (mediaPage.SourceJudge() == MediaPage.BLUETOOTHTITLE) {
 										if (mediaPage.isPlaying()) {
-											isOk = true;
+											Utils.failInfo = "pass";
 											Utils.logPrint("switchFmBtMusicPauseInterrupt() pass");
 										}
 									}
@@ -419,45 +424,39 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 				}
 			}
 		} catch (UiObjectNotFoundException e) {
-			Utils.logPrint("switchFmBtMusicPauseInterrupt:" + e.toString());
+			Utils.failInfo =  Utils.failInfo + "->UiObjectNotFoundException:" + e.toString();
 		}
-		return isOk;
+		return Utils.failInfo;
 	}
 	
 	/**
-	 * 蓝牙音乐：音乐播放时车机端激活随机模式
+	 * 9.蓝牙音乐播放时检查播放模式
 	 * */
-	public boolean changeToShuffleMode() {
-		boolean isOk = false;
+	public String changeToShuffleMode() {
+		Utils.failInfo = "start";
 		
 		try {
 			if (homePage.intoMultimedia()) {
 				if (mediaPage.intoBtMusic()) {
-					if (mediaPage.changePlayModeTo(MediaPage.SHUFFLE_LIST)) {
-						if (mediaPage.changePlayModeTo(MediaPage.SINGLE_REPEAT)) {
-							if (mediaPage.changePlayModeTo(MediaPage.ALL_SHUFFLE_REPEAT)) {
-								if (mediaPage.changePlayModeTo(MediaPage.ALL_MODE)) {
-									if (mediaPage.changePlayModeTo(MediaPage.LIST_REPEAT)) {
-										isOk = true;
-										Utils.logPrint("changeToShuffleMode() pass");
-									}
-								}
-							}
+					if (mediaPage.changePlayModeTo()) {
+						if (mediaPage.changePlayModeTo()) {
+							Utils.failInfo = "pass";
+							Utils.logPrint("changeToShuffleMode() pass");
 						}
 					}
 				}
 			}
 		} catch (UiObjectNotFoundException e) {
-			Utils.logPrint("changeToShuffleMode:" + e.toString());
+			Utils.failInfo =  Utils.failInfo + "->UiObjectNotFoundException:" + e.toString();
 		}
-		return isOk;
+		return Utils.failInfo;
 	}
 	
     /**
-     * 蓝牙音乐播放时切换wifi开关
+     * 8.蓝牙音乐播放时切换wifi开关
      */
-	public boolean switchWifiWhenBtPlaying() {
-		boolean isOk = false;
+	public String switchWifiWhenBtPlaying() {
+		Utils.failInfo = "start";
 		
 		try {
 			homePage.intoMultimedia();
@@ -477,7 +476,7 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 					navBarPage.clickMedia();
 					if (mediaPage.SourceJudge() == MediaPage.BLUETOOTHTITLE) {
 						if (mediaPage.isPlaying()) {
-							isOk = true;
+							Utils.failInfo = "pass";
 							Utils.logPrint("switchWifiWhenBtPlaying pass");
 						}
 					}
@@ -485,16 +484,16 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 			}
 			
 		} catch (UiObjectNotFoundException e) {
-			Utils.logPrint("switchWifiWhenBtPlaying:" + e.toString());
+			Utils.failInfo =  Utils.failInfo + "->UiObjectNotFoundException:" + e.toString();
 		}
-		return isOk;
+		return Utils.failInfo;
 	}
 	
     /**
-     * 蓝牙音乐播放时修改系统语言
+     * 7.蓝牙音乐播放时修改系统语言
      */
-	public boolean changeLanguageWhenBtPlaying() {
-		boolean isOk = false;
+	public String changeLanguageWhenBtPlaying() {
+		Utils.failInfo = "start";
 		
 		try {
 			if (homePage.intoMultimedia()) {
@@ -510,7 +509,7 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 											UiDevice.getInstance().pressBack();//返回设置的原来页面
 											if (settingsPage.intoLanguageSetting()) {
 												if (settingsPage.seleteChinese()) {
-													isOk = true;
+													Utils.failInfo = "pass";
 													Utils.logPrint("changeLanguageWhenBtPlaying pass");
 												}
 											}
@@ -523,16 +522,16 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 				}
 			}
 		} catch (UiObjectNotFoundException e) {
-			Utils.logPrint("changeLanguageWhenBtPlaying：" + e.toString());
+			Utils.failInfo =  Utils.failInfo + "->UiObjectNotFoundException:" + e.toString();
 		}
-		return isOk;
+		return Utils.failInfo;
 	}
 	
 	/**
-     * 蓝牙音乐暂停时锁屏不影响暂停状态
+     * 6.蓝牙音乐暂停时锁屏不影响暂停状态
      */
-	public boolean lockScreenWhenBtPausing(){
-		boolean isOk = false;
+	public String lockScreenWhenBtPausing(){
+		Utils.failInfo = "start";
 
 		try {
 			if (homePage.intoMultimedia()) {
@@ -543,7 +542,7 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 								if (shortcutPage.unlockScreen()) {
 									if (mediaPage.isPlaying() == false) {
 										mediaPage.musicDoPlay();//恢复播放
-										isOk = true;
+										Utils.failInfo = "pass";
 										Utils.logPrint("lockScreenWhenBtPausing pass");
 									}
 								}
@@ -553,16 +552,16 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 				}
 			}
 		} catch (UiObjectNotFoundException e) {
-			Utils.logPrint("lockScreenWhenBtPausing：" + e.toString());
+			Utils.failInfo =  Utils.failInfo + "->UiObjectNotFoundException:" + e.toString();
 		}
-		return isOk;
+		return Utils.failInfo;
 	}
 	
 	/**
-	 * 蓝牙音乐播放时锁屏并解锁不影响播放状态
+	 * 5.蓝牙音乐播放时锁屏并解锁不影响播放状态
 	 * */
-	public boolean lockScreenWhenBtPlaying(){
-		boolean isOk = false;
+	public String lockScreenWhenBtPlaying(){
+		Utils.failInfo = "start";
 
 		try {
 			if (homePage.intoMultimedia()) {
@@ -572,7 +571,7 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 							if (shortcutPage.lockScreen()) {
 								if (shortcutPage.unlockScreen()) {
 									if (mediaPage.isPlaying()) {
-										isOk = true;
+										Utils.failInfo = "pass";
 										Utils.logPrint("lockScreenWhenBtPlaying pass");
 									}
 								}
@@ -581,40 +580,43 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 					}
 				}
 			}
+			if (! Utils.failInfo.equals("pass")) {
+				Utils.takeScreenshotToPath("/sdcard/", "lockScreenWhenBtPlaying");
+			}
 		} catch (UiObjectNotFoundException e) {
-			Utils.logPrint("lockScreenWhenBtPlaying：" + e.toString());
+			Utils.failInfo =  Utils.failInfo + "->UiObjectNotFoundException:" + e.toString();
 		}
-		return isOk;
+		return Utils.failInfo;
 	}
 	
 	/**
-	 * 测试上下一曲
+	 * 4.测试上下一曲
 	 * */
-	public boolean btMusicNextPrevious() {
-		boolean isOk = false;
+	public String btMusicNextPrevious() {
+		Utils.failInfo = "start";
 
 		try {
 			if (homePage.intoMultimedia()) {
 				if (mediaPage.intoBtMusic()) {
 					if (mediaPage.nextMusic()) {
 						if (mediaPage.previousMusic()) {
-							isOk = true;
+							Utils.failInfo = "pass";
 							Utils.logPrint("btMusicNextPrevious pass");
 						}
 					}
 				}
 			}
 		} catch (UiObjectNotFoundException e) {
-			Utils.logPrint("intoBtMusicAutoPlaying：" + e.toString());
+			Utils.failInfo =  Utils.failInfo + "->UiObjectNotFoundException:" + e.toString();
 		}
-		return isOk;
+		return Utils.failInfo;
 	}
 	
 	/**
-     * 测试进入蓝牙音乐自动播放
+     * 3.测试进入蓝牙音乐自动播放
      */
-	public boolean intoBtMusicAutoPlaying() {
-		boolean isOk = false;
+	public String intoBtMusicAutoPlaying() {
+		Utils.failInfo = "start";
 		
 		try {
 			if (homePage.intoMultimedia()) {
@@ -625,7 +627,7 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 							mediaPage.previousSource();
 							if (mediaPage.intoBtMusic()) {
 								if (mediaPage.isPlaying()) {
-									isOk = true;
+									Utils.failInfo = "pass";
 									Utils.logPrint("intoMutimedia pass");
 								}
 							}
@@ -634,17 +636,17 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 				}
 			}
 		} catch (UiObjectNotFoundException e) {
-			Utils.logPrint("intoBtMusicAutoPlaying：" + e.toString());
+			Utils.failInfo =  Utils.failInfo + "->UiObjectNotFoundException:" + e.toString();
 		}
-		return isOk;
+		return Utils.failInfo;
 	}
 	
 	
     /**
-     * 测试检查ID3页面
+     * 2.测试检查ID3页面
      */
-	public boolean checkID3BtMusic() {
-		boolean isOk = false;
+	public String checkID3BtMusic() {
+		Utils.failInfo = "start";
 		
 		try {
 			if (homePage.intoMultimedia()) {
@@ -659,24 +661,24 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 							Utils.logPrint("歌手名：" + artistStr);
 							Utils.logPrint("专辑名：" + albumStr);
 							Utils.logPrint("歌曲总时长：" + endTimeStr);
-							isOk = true;
+							Utils.failInfo = "pass";
 							Utils.logPrint("checkID3BtMusic pass");
 						}
 					}
 				}
 			}
 		} catch (UiObjectNotFoundException e) {
-			Utils.logPrint("checkID3BtMusic：" + e.toString());
+			Utils.failInfo =  Utils.failInfo + "->UiObjectNotFoundException:" + e.toString();
 		}
-		return isOk;
+		return Utils.failInfo;
 	}
 	
     /**
-     * 测试暂停播放
+     * 1.测试暂停播放
      * @return 
      */
-	public boolean btMusicPausePlay(){
-		boolean isOk = false;
+	public String btMusicPausePlay(){
+		Utils.failInfo = "start";
 		
 		try {
 			if (homePage.intoMultimedia()) {
@@ -684,7 +686,7 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 					if (mediaPage.musicDoPlay()) {
 						if (mediaPage.musicDoPause()) {
 							if (mediaPage.musicDoPlay()) {
-								isOk = true;
+								Utils.failInfo = "pass";
 								Utils.logPrint("btMusicPausePlay pass");
 							}
 						}
@@ -692,8 +694,8 @@ public class BtMusicOperate extends UiAutomatorTestCase {
 				}
 			}
 		} catch (UiObjectNotFoundException e) {
-			Utils.logPrint("btMusicPausePlay：" + e.toString());
+			Utils.failInfo =  Utils.failInfo + "->UiObjectNotFoundException:" + e.toString();
 		}
-		return isOk;
+		return Utils.failInfo;
 	}
 }

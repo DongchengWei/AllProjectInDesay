@@ -80,13 +80,11 @@ public class BtPhoneOperate extends UiAutomatorTestCase {
 		} catch (RemoteException e) {
 			e.printStackTrace();
 		}
-		boolean isOk = false;
-		isOk = recall();
+		assertEquals("测试结果", "pass", btDialLongAndShortNumber());
 		
 //		String currentTestStr = Utils.getCurrentMethodName();//当前方法名
 //		//fail则打mark,截取log,并保存log到指定位置
 //		Utils.markAndSaveLogs(isOk, Utils.failStepStr, currentTestStr);//以方法名命名case文件夹
-		assertEquals("测试结果：", true, isOk);
 	}
 	
 	/**
@@ -353,15 +351,14 @@ public class BtPhoneOperate extends UiAutomatorTestCase {
 	 * @return
 	 * @Date 2017-05-04
 	 */
-	public boolean btDialLongAndShortNumber() {
-		boolean isOk = false;
+	public String btDialLongAndShortNumber() {
+		Utils.failInfo = "start";
 		String dial1Str = "1";//TC_ST16081569828,拨打一位号码，拨号无效
 		String dial123Str = "123";//TC_ST16081569829，三位号码	  
 		String dialNum7Str = "1234567";//TC_ST16081569830，7位
 		String dialNum11Str = "12345678901";//TC_ST16081569831，11位
 		String dialNum15Str = "123456789012345";//TC_ST16081569832，15
 		String dialNum30Str = "123456789012345678901234567890";//TC_ST16081569833,30
-		String resultStr = "";
 		try {
 			homePage.intoMultimedia();
 			mediaPage.intoFmAmPage();
@@ -369,38 +366,29 @@ public class BtPhoneOperate extends UiAutomatorTestCase {
 			homePage.intoPhone();
 			phonePage.intoDialPad();
 			dialpadPage.dialANumber(dial1Str);
-			resultStr = dial1Str;
 			if (dialpadPage.waitInputGone(3000) == false) {
-				resultStr = dial123Str;
 				UiDevice.getInstance().pressBack();
 				phonePage.intoDialPad();
 				if (dialpadPage.dialAbnormalNumber(dial123Str)) {
-					resultStr = dialNum7Str;
 					if (dialpadPage.dialAbnormalNumber(dialNum7Str)) {
-						resultStr = dialNum11Str;
 						if (dialpadPage.dialAbnormalNumber(dialNum11Str)) {
-							resultStr = dialNum15Str;
 							dialpadPage.dialANumber(dialNum15Str);
 							if (dialpadPage.waitInputGone(3000) == false) {
 								UiDevice.getInstance().pressBack();
 								phonePage.intoDialPad();
-								resultStr = dialNum15Str;
 								dialpadPage.dialANumber(dialNum30Str);
 								if (dialpadPage.waitInputGone(3000) == false) {
-									isOk = true;
+									Utils.failInfo = "pass";
 								}
 							}
 						}
 					}
 				}
 			}
-			if (isOk == false) {
-				Utils.logPrint("fail:" + resultStr);
-			}
 		} catch (UiObjectNotFoundException e) {
-			e.printStackTrace();
+			Utils.failInfo =  Utils.failInfo + "->UiObjectNotFoundException:" + e.toString();
 		}
-		return isOk;
+		return Utils.failInfo;
 	}
 	
 	/**
@@ -411,8 +399,8 @@ public class BtPhoneOperate extends UiAutomatorTestCase {
 	 * @return
 	 * @Date 2017-05-04
 	 */
-	public boolean btDialAbnormalNumber() {
-		boolean isOk = false;
+	public String btDialAbnormalNumber() {
+		Utils.failInfo = "start";
 		String dialNumStr = "*#10086";//输入一串字符数字，以字符开头
 		String dialSsStr = "*#";	  //输入一串字符*#
 		String dial10086sStr = "10086*#";//输入一串字符数字，以数字开头
@@ -425,13 +413,13 @@ public class BtPhoneOperate extends UiAutomatorTestCase {
 			if (dialpadPage.dialAbnormalNumber(dialNumStr)) {
 				if (dialpadPage.dialAbnormalNumber(dialSsStr)) {
 					if (dialpadPage.dialAbnormalNumber(dial10086sStr)) {
-						isOk = true;
+						Utils.failInfo = "pass";
 					}
 				}
 			}
 		} catch (UiObjectNotFoundException e) {
-			e.printStackTrace();
+			Utils.failInfo =  Utils.failInfo + "->UiObjectNotFoundException:" + e.toString();
 		}
-		return isOk;
+		return Utils.failInfo;
 	}
 }

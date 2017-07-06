@@ -92,12 +92,12 @@ public class MediaPage extends UiAutomatorTestCase {
 	//播放列表按钮
 	UiObject playListBtnObj = new UiObject(new UiSelector()
 			.resourceId("com.thundersoft.mediaplayer:id/iv_ts_media_btn_play_list"));
-	//播放模式按钮isEnabled
-	UiObject playModeObj = new UiObject(new UiSelector()
-			.resourceId("com.thundersoft.mediaplayer:id/iv_ts_media_btn_play_mode"));
-	//播放模式文字
-	UiObject playModeTextObj = new UiObject(new UiSelector()
-			.resourceId("com.thundersoft.mediaplayer:id/tv_media_play_mode"));
+	//播放模式随机方式支持为isEnabled
+	UiObject playModeshuffleObj = new UiObject(new UiSelector()
+			.resourceId("com.thundersoft.mediaplayer:id/iv_ts_media_btn_play_mode_shuffle"));
+	//播放模式循环方式支持为isEnabled
+	UiObject playModeRepeatObj = new UiObject(new UiSelector()
+			.resourceId("com.thundersoft.mediaplayer:id/iv_ts_media_btn_play_mode_repeat"));
 	
 	//FMsource
 	UiObject fmAmDeviceObj = new UiObject(new UiSelector()//FM
@@ -110,25 +110,39 @@ public class MediaPage extends UiAutomatorTestCase {
 	//判断当前是在那个source
 	public int SourceJudge() throws UiObjectNotFoundException {
 		String titleStr = mediaTitleObj.getText();
+		int titleInt = 0;
+		
 		if (titleStr.equals("Storage") || titleStr.equals("本地存储")) {
-			return STORAGETITLE;
+			titleInt = STORAGETITLE;
 		}else if (titleStr.equals("USB1") || titleStr.equals("U盘1")) {
-			return USB1TITLE;
+			titleInt = USB1TITLE;
 		}else if (titleStr.equals("USB2") || titleStr.equals("U盘2")) {
-			return USB2TITLE;
+			titleInt = USB2TITLE;
 		}else if (titleStr.equals("SD Card") || titleStr.equals("内存卡")) {
-			return SDCARDTITLE;
+			titleInt = SDCARDTITLE;
 		}else if (titleStr.equals("FM/AM")) {
-			return FMAMTITLE;
+			titleInt = FMAMTITLE;
 		}else if (titleStr.equals("Bluetooth") || titleStr.equals("蓝牙设备")) {
-			return BLUETOOTHTITLE;
+			titleInt = BLUETOOTHTITLE;
 		}else if (titleStr.equals("iPod")) {
-			return IPODTITLE;
+			titleInt = IPODTITLE;
 		}else if (titleStr.equals("AUX")) {
-			return AUXTITLE;
+			titleInt = AUXTITLE;
 		}else {
 			return 0;
 		}
+		
+		return titleInt;
+	}
+	
+	/**
+	 * 获取当前source名称
+	 * @return 名称
+	 * @throws UiObjectNotFoundException
+	 * @Date 2017-07-05
+	 */
+	public String getSourceTitle() throws UiObjectNotFoundException {
+		return mediaTitleObj.getText();
 	}
 	
 	/**
@@ -201,6 +215,7 @@ public class MediaPage extends UiAutomatorTestCase {
 	public boolean intoBtMusic() throws UiObjectNotFoundException {
 		Utils.getCurrentMethodName();
 		boolean intoOk = false;
+		String intoStatuStr = "";
 		
 		if (mediaTitleObj.exists()) {
 			if (SourceJudge() == BLUETOOTHTITLE) {
@@ -209,9 +224,16 @@ public class MediaPage extends UiAutomatorTestCase {
 				if (mediasourceObj.click()) {
 					if (btSourceObj.click()) {
 						if (SourceJudge() == BLUETOOTHTITLE) {
+							intoStatuStr = ":SourceJudge()=BT";
 							intoOk = true;
+						} else {
+							intoStatuStr = ":进入的界面不是蓝牙音乐界面";
 						}
+					} else {
+						intoStatuStr = ":点击蓝牙音源失败";
 					}
+				} else {
+					intoStatuStr = ":source点击失败";
 				}
 			}
 		} else {
@@ -220,13 +242,25 @@ public class MediaPage extends UiAutomatorTestCase {
 					if (mediasourceObj.click()) {
 						if (btSourceObj.click()) {
 							if (SourceJudge() == BLUETOOTHTITLE) {
+								intoStatuStr = ":SourceJudge()=BT";
 								intoOk = true;
+							} else {
+								intoStatuStr = ":进入的界面不是蓝牙音乐界面";
 							}
+						} else {
+							intoStatuStr = ":点击蓝牙音源失败";
 						}
+					} else {
+						intoStatuStr = ":source点击失败";
 					}
+				} else {
+					intoStatuStr = ":音乐栏点击失败";
 				}
-			} 
+			} else {
+				intoStatuStr = ":音乐栏不存在";
+			}
 		}
+		Utils.failInfo += intoStatuStr;
 		return intoOk;
 	}
 	
@@ -236,6 +270,7 @@ public class MediaPage extends UiAutomatorTestCase {
 	public boolean intoFmAmPage() throws UiObjectNotFoundException {
 		Utils.getCurrentMethodName();
 		boolean intoFmOk = false;
+		String intoFmStr = "";
 		SystemClock.sleep(1000);
 		if (mediasourceObj.exists()) {
 			if (SourceJudge() == FMAMTITLE) {
@@ -245,9 +280,12 @@ public class MediaPage extends UiAutomatorTestCase {
 				if (fmAmDeviceObj.click()) {
 					if (SourceJudge() == FMAMTITLE) {
 						intoFmOk = true;
+						intoFmStr = ":SourceJudge()=FMAMTITLE";
+					} else {
+						intoFmStr = "点击FM/AM设备失败";
 					}
 				} else {
-					Utils.logPrint("fmAmDeviceObj.click() fail");
+					intoFmStr = "点击FM/AM设备失败";
 				}
 			}
 		} else {
@@ -256,23 +294,23 @@ public class MediaPage extends UiAutomatorTestCase {
 					mediasourceObj.click();
 					if (fmAmDeviceObj.click()) {
 						if (SourceJudge() == FMAMTITLE) {
+							intoFmStr = ":SourceJudge()=FMAMTITLE";
 							intoFmOk = true;
+						} else {
+							intoFmStr = "点击FM/AM设备失败";
 						}
+					} else {
+						intoFmStr = "点击FM/AM设备失败";
 					}
+				} else {
+					intoFmStr = "点击音乐栏失败";
 				}
+			} else {
+				intoFmStr = "音乐栏不存在";
 			}
 		}
 		
-		
-//		if (SourceJudge() == FMAMTITLE) {
-//			intoFmOk = true;
-//		} else {
-//			if (mediasourceObj.click()) {
-//				if (fmAmDeviceObj.click()) {
-//					intoFmOk = true;
-//				}
-//			}
-//		}
+		Utils.failInfo += intoFmStr;
 		return intoFmOk;
 	}
 	
@@ -363,7 +401,7 @@ public class MediaPage extends UiAutomatorTestCase {
 			sleep(2000);
 			if (! startTimeStr.equals(startTimeObj.getText())) {
 				isOk = true;
-			}
+			} 
 		}
 		return isOk;
 	}
@@ -519,7 +557,15 @@ public class MediaPage extends UiAutomatorTestCase {
 	 * @throws UiObjectNotFoundException 
 	 * */
 	public boolean clickPlayPause() throws UiObjectNotFoundException {
-		return playButtonObj.click();
+		Utils.getCurrentMethodName();
+		boolean isOk = false;
+		
+		if (playButtonObj.click()) {
+			isOk = true;
+		} else {
+			Utils.failInfo += "点击播放/暂停按钮失败";
+		}
+		return isOk;
 	}
 	
 	/**
@@ -535,6 +581,8 @@ public class MediaPage extends UiAutomatorTestCase {
 			clickPlayPause();
 			if (isPlaying()) {
 				isOk = true;
+			} else {
+				Utils.failInfo += "音乐播放失败";
 			}
 		}
 		return isOk;
@@ -795,22 +843,6 @@ public class MediaPage extends UiAutomatorTestCase {
 		return isID3Ok;
 	}
 	
-	/**
-	 * 获取播放模式状态的字符串
-	 * @return 播放模式的text
-	 * @throws UiObjectNotFoundException
-	 * @Date 2017-04-27
-	 */
-	public String getPlayModeString() throws UiObjectNotFoundException {
-		String playModeStr = "";
-		
-		if (playModeTextObj.exists()) {
-			playModeStr = playModeTextObj.getText();
-		}
-		
-		return playModeStr;
-	}
-	
 	public static final int SHUFFLE_LIST = 1;
 	public static final int SINGLE_REPEAT = 2;
 	public static final int LIST_REPEAT = 3;
@@ -828,56 +860,16 @@ public class MediaPage extends UiAutomatorTestCase {
 	 * ：所有随机循环 All Shuffle repeat
 	 * @throws UiObjectNotFoundException 
 	 * */
-	public boolean changePlayModeTo(int playMode) throws UiObjectNotFoundException {
+	public boolean changePlayModeTo() throws UiObjectNotFoundException {
 		Utils.getCurrentMethodName();
 		boolean isOk = false;
 		
-		String targetModeCnStr = "";
-		String targetModeEnStr = "";
-		switch (playMode) {
-		case SHUFFLE_LIST:
-			targetModeCnStr = "列表随机";
-			targetModeEnStr = "Shuffle list";
-			break;
-		case SINGLE_REPEAT:
-			targetModeCnStr = "单曲循环";
-			targetModeEnStr = "Single repeat";
-			break;
-		case LIST_REPEAT:
-			targetModeCnStr = "列表循环";
-			targetModeEnStr = "list repeat";
-			break;
-		case ALL_MODE:
-			targetModeCnStr = "所有音乐";
-			targetModeEnStr = "ALL";
-			break;
-		case ALL_SHUFFLE_REPEAT:
-			targetModeCnStr = "所有随机循环";
-			targetModeEnStr = "All Shuffle repeat";
-			break;
-
-		default:
-			break;
-		}
-		
-		if (playModeObj.isEnabled()) {
-			String modeStr = getPlayModeString();
-			if (modeStr.equals(targetModeCnStr) || modeStr.equals(targetModeEnStr)) {
-				isOk = true;
-			} else {
-				int times = 0;
-				while(times < 5){
-					playModeObj.click();
-					SystemClock.sleep(1000);
-					modeStr = getPlayModeString();
-					if (modeStr.equals(targetModeCnStr) || modeStr.equals(targetModeEnStr)) {
-						isOk = true;
-						times = 10;
-					}
-				}
-			}
+		if (playModeshuffleObj.isEnabled() && playModeRepeatObj.isEnabled()) {
+			Utils.logPrint("随机模式和循环模式按钮可以点击");
+			isOk = true;
 		} else {
-			Utils.logPrint("循环模式按钮不可点击，请确认...");
+			Utils.failInfo += ":不可点击";
+			Utils.logPrint("随机模式或循环模式按钮不可点击，请确认...");
 		}
 		return isOk;
 	}

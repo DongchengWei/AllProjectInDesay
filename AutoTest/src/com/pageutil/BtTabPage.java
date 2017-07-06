@@ -234,6 +234,10 @@ public class BtTabPage extends UiAutomatorTestCase {
 				}
 			}
 		}
+		
+		if (isOk) {
+			Utils.logPrint(deviceNameStr + " connected:" + status);
+		}
 		return isOk;
 	}
 	
@@ -271,6 +275,7 @@ public class BtTabPage extends UiAutomatorTestCase {
 	
 	//打开BT开关
 	public boolean turnOnBT(long timeout) throws UiObjectNotFoundException {
+		Utils.getCurrentMethodName();
 		boolean isOk = false;
 		while(! btSwitchObj.click());
 //		if (btSwitchObj.click()) {
@@ -295,6 +300,7 @@ public class BtTabPage extends UiAutomatorTestCase {
 	
 	//关闭BT开关
 	public boolean turnOffBT(long timeout) throws UiObjectNotFoundException {
+		Utils.getCurrentMethodName();
 		boolean isOk = false;
 		while(! btSwitchObj.click());
 //		if (btSwitchObj.click()) {
@@ -310,6 +316,8 @@ public class BtTabPage extends UiAutomatorTestCase {
 				if (! btSwitchObj.isChecked()) {
 					isOk = true;
 //					currentMills = timeout + 1;
+				} else {
+					Utils.failInfo += ":蓝牙开关关闭失败";
 				}
 //			}
 //		}

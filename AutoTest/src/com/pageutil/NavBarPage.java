@@ -17,6 +17,7 @@ public class NavBarPage extends UiAutomatorTestCase {
 			SystemClock.sleep(500);
 			return true;
 		} else {
+			Utils.failInfo += ":点击侧边栏返回失败";
 			return false;
 		}
 	}
@@ -26,6 +27,7 @@ public class NavBarPage extends UiAutomatorTestCase {
 			SystemClock.sleep(500);
 			return true;
 		} else {
+			Utils.failInfo += ":点击侧边栏导航失败";
 			return false;
 		}
 	}
@@ -33,9 +35,10 @@ public class NavBarPage extends UiAutomatorTestCase {
 	public boolean clickMedia() {
 		Utils.getCurrentMethodName();
 		if (UiDevice.getInstance().click(75, 395)) {
-			SystemClock.sleep(500);
+			SystemClock.sleep(1000);
 			return true;
 		} else {
+			Utils.failInfo += ":点击侧边栏多媒体失败";
 			return false;
 		}
 	}
@@ -45,6 +48,7 @@ public class NavBarPage extends UiAutomatorTestCase {
 			SystemClock.sleep(500);
 			return true;
 		} else {
+			Utils.failInfo += ":点击侧边栏电话通讯失败";
 			return false;
 		}
 	}
@@ -54,6 +58,7 @@ public class NavBarPage extends UiAutomatorTestCase {
 			SystemClock.sleep(500);
 			return true;
 		} else {
+			Utils.failInfo += ":点击侧边栏快捷应用失败";
 			return false;
 		}
 	}

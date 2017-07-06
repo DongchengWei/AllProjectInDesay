@@ -27,7 +27,6 @@ D:\android\myworkspace\AutoTest\bin\classes\com\bt\MultiReconnectCheckBtMusic.cl
 D:\android\myworkspace\AutoTest\bin\classes\com\bt\MultiWinPlaySms.class \
 D:\android\myworkspace\AutoTest\bin\classes\com\bt\music\MusicTest.class \
 D:\android\myworkspace\AutoTest\bin\classes\com\bt\MusicForHours.class \
-D:\android\myworkspace\AutoTest\bin\classes\com\bt\OpenMultiWinPlayMusicAndNav.class \
 D:\android\myworkspace\AutoTest\bin\classes\com\bt\SmsVoicePlay.class \
 D:\android\myworkspace\AutoTest\bin\classes\com\bt\TurnOnMultiWinCheckBtMusic.class \
 D:\android\myworkspace\AutoTest\bin\classes\com\carlife\EnterExit.class \
@@ -35,7 +34,6 @@ D:\android\myworkspace\AutoTest\bin\classes\com\carlife\PausePlayNext.class \
 D:\android\myworkspace\AutoTest\bin\classes\com\media\NextTest.class \
 D:\android\myworkspace\AutoTest\bin\classes\com\media\PlayUdiskSongs.class \
 D:\android\myworkspace\AutoTest\bin\classes\com\media\UdiskPlayFolders.class \
-D:\android\myworkspace\AutoTest\bin\classes\com\media\VedioNext.class \
 D:\android\myworkspace\AutoTest\bin\classes\com\operation\BtMusicOperate.class \
 D:\android\myworkspace\AutoTest\bin\classes\com\operation\BtPhoneOperate.class \
 D:\android\myworkspace\AutoTest\bin\classes\com\otherutils\CaptrueUtil.class \
@@ -43,7 +41,6 @@ D:\android\myworkspace\AutoTest\bin\classes\com\otherutils\LogUtil.class \
 D:\android\myworkspace\AutoTest\bin\classes\com\otherutils\PropertiesUtil.class \
 D:\android\myworkspace\AutoTest\bin\classes\com\otherutils\Utils$1.class \
 D:\android\myworkspace\AutoTest\bin\classes\com\otherutils\Utils$2.class \
-D:\android\myworkspace\AutoTest\bin\classes\com\otherutils\Utils$3.class \
 D:\android\myworkspace\AutoTest\bin\classes\com\otherutils\Utils.class \
 D:\android\myworkspace\AutoTest\bin\classes\com\pageutil\AppsPage.class \
 D:\android\myworkspace\AutoTest\bin\classes\com\pageutil\AppStorePage.class \
@@ -72,4 +69,5 @@ D:\android\myworkspace\AutoTest\bin\classes\com\rvc\EnterAndExitWhileBtMusicPlay
 D:\android\myworkspace\AutoTest\bin\classes\com\rvc\ShowHideSettingBar.class \
 D:\android\myworkspace\AutoTest\bin\classes\com\update\ContinusUpdate.class \
 D:\android\myworkspace\AutoTest\bin\classes\com\update\UpdateVersion.class \
+D:\android\myworkspace\AutoTest\bin\classes\com\wifi\WifiScroll.class \
 D:\android\myworkspace\AutoTest\bin\classes\com\wifi\WifiSwitchConnect.class \

@@ -127,6 +127,7 @@ public class DialpadPage extends UiAutomatorTestCase {
 	 */
 	public boolean dialAbnormalNumber(String callStr) throws UiObjectNotFoundException {
 		Utils.getCurrentMethodName();
+		Utils.failInfo = Utils.failInfo + "->CallNum:" + callStr;
 		boolean isOk = false;
 		
 		inputNumbers(callStr);
@@ -139,6 +140,11 @@ public class DialpadPage extends UiAutomatorTestCase {
 						if (inputNumObj.exists()) {
 							isOk = true;
 						}
+					}
+				} else if (inputNumObj.exists()) {
+					textStr = getInputNumbers();
+					if (textStr.equals("")) {
+						isOk = true;
 					}
 				}
 			}
